@@ -1,12 +1,3 @@
-# Anilibria-Api-Client
-
-## Запуск тестов
-```bash
-py -m tests.название_теста
-```
-
-## Пример авторизации (tests/methods_tests.py)
-```python
 import unittest
 import asyncio
 
@@ -53,11 +44,3 @@ class Test(IsolatedAsyncioTestCase):
 
 if __name__ == "__main__":
     unittest.main()
-```
-### Результат
-```
-С токеном:
-{'id': 123456, 'login': 'semen-bol', ...}
-Без токена:
-Ничего нет
-```
