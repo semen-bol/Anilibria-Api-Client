@@ -32,17 +32,29 @@ class AsyncBaseAPI:
         
     
     async def __aenter__(self):
-        """Инициализация сессии при входе в контекст"""
-        self.session = aiohttp.ClientSession(
-            headers=self.headers,
-            timeout=self.timeout
-        )
+        if self.session is None:
+            self.session = aiohttp.ClientSession()
+            self._own_session = True
         return self
     
     async def __aexit__(self, exc_type, exc_val, exc_tb):
-        """Закрытие сессии при выходе из контекста"""
-        if self.session:
-            await self.session.close()
+        if self._own_session and self._session:
+            await self._session.close()
+            self.session = None
+            self._own_session = False
+    
+    def set_session(self, session: aiohttp.ClientSession):
+        """Установить внешнюю сессию"""
+        self.session = session
+        self._own_session = False
+    
+    async def _get_session(self) -> aiohttp.ClientSession:
+        """Получить сессию, создавая новую если нужно"""
+        if self.session is None:
+            session = aiohttp.ClientSession()
+            self.session = session
+            self._own_session = True
+        return self.session
     
     @staticmethod
     def build_query_string(params: Dict[str, Any]) -> str:
@@ -123,8 +135,8 @@ class AsyncBaseAPI:
         :return: Ответ от API (десериализованный JSON или сырые данные)
         :raises: HTTPError если статус ответа не 2xx
         """
-
-        if not self.session:
+        sees = await self._get_session()
+        if not self.session or not sees:
             raise RuntimeError("Session not initialized. Use async with context manager.")
         
         url = self.build_url(self.base_url, endpoint, params)
@@ -156,6 +168,12 @@ class AsyncBaseAPI:
                 
         except aiohttp.ClientError as e:
             raise self._handle_error(e)
+        
+        finally:
+            if self._own_session and self.session:
+                await self.session.close()
+                self.session = None
+                self._own_session = False
     
     def _handle_error(self, error: aiohttp.ClientError) -> Exception:
         """

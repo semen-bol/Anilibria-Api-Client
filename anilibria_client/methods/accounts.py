@@ -67,9 +67,8 @@ class AccountsMethod(BaseMethod):
             "login": login,
             "password": password
         }
-        print(data)
 
-        return await self._api.post("/accounts/users/auth/login", data=data)
+        return await self._api.post("/accounts/users/auth/login", json_data=data)
     
     async def users_auth_logout(
             self
@@ -105,4 +104,23 @@ class AccountsMethod(BaseMethod):
 
         return await self._api.get("/accounts/users/auth/social/authenticate", params=query)
     
+    async def users_me_profile(
+            self, 
+            include: Optional[str] = None, 
+            exclude: Optional[str] = None
+    ):
+        """
+        Возвращает данные профиля авторизованного пользователя
+
+        :param include: Опционально. Список включаемых полей. Через запятую или множественные параметры. Поддерживается вложенность через точку. Example : id,type.genres
+        :param exclude: Опционально. Список исключаемых полей. Через запятую или множественные параметры. Поддерживается вложенность через точку. Приоритет над include Example : poster,description
+        """
+
+        query = {
+            'include': include,
+            'exclude': exclude
+        }
+
+        return await self._api.get("/accounts/users/me/profile", params=query)
+
     
