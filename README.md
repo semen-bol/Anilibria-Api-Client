@@ -5,7 +5,8 @@
 py -m tests.название_теста
 ```
 
-## Пример авторизации (tests/methods_tests.py)
+## Тесты
+### Пример авторизации (tests/auth_test.py)
 ```python
 import unittest
 import asyncio
@@ -54,10 +55,47 @@ class Test(IsolatedAsyncioTestCase):
 if __name__ == "__main__":
     unittest.main()
 ```
-### Результат
+### Пример с использованием двух инициализаций класса и использования execute (tests/execute_tests.py)
+```python
+import unittest
+
+from anilibria_client import AsyncAnilibriaAPI
+from unittest import IsolatedAsyncioTestCase
+from pprint import pprint
+
+class TestLikeAJs(IsolatedAsyncioTestCase):
+    async def test_methods(self):
+        api = AsyncAnilibriaAPI(authorization="Bearer ...")
+        anime = await api.execute(endpoint="/anime/releases/random?limit=50&include=id,name.main")
+        if len(anime) > 1:
+            for rnd in anime:
+                pprint(rnd)
+        else:
+            pprint(anime[0])
+
+class TestAsyncWith(IsolatedAsyncioTestCase):
+    async def test_async_with(self):
+        async with AsyncAnilibriaAPI(authorization="Bearer ...") as api:
+            list = ""
+            anime = await api.execute(endpoint="/anime/releases/random?limit=50&include=id,name.main")
+            if len(anime) > 1:
+                for rnd in anime:
+                    list += f"{str(rnd.get("name").get("main"))}, "
+            else:
+                list += str(anime.get("name").get("main"))
+
+            print(list)
+
+
+if __name__ == "__main__":
+    unittest.main()
 ```
-С токеном:
-{'id': 123456, 'login': 'semen-bol', ...}
-Без токена:
-Ничего нет
+
+## Поддержка execute
+```python
+api = AsyncAnilibriaAPI()
+anime = await api.execute(endpoint="/anime/releases/random?limit=50&include=id,name.main")
 ```
+
+## Ошибки
+Для валидации ошибок используйте ```AnilibriaException```, в конкретных случая если вы знаете что делаете можно использовать ```AnilibriaValidationException``` (Ошибка 422)

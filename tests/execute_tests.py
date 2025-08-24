@@ -6,7 +6,7 @@ from pprint import pprint
 
 class TestLikeAJs(IsolatedAsyncioTestCase):
     async def test_methods(self):
-        api = AsyncAnilibriaAPI(authorization="Bearer ...")
+        api = AsyncAnilibriaAPI()
         anime = await api.execute(endpoint="/anime/releases/random?limit=50&include=id,name.main")
         if len(anime) > 1:
             for rnd in anime:
@@ -16,7 +16,7 @@ class TestLikeAJs(IsolatedAsyncioTestCase):
 
 class TestAsyncWith(IsolatedAsyncioTestCase):
     async def test_async_with(self):
-        async with AsyncAnilibriaAPI(authorization="Bearer ...") as api:
+        async with AsyncAnilibriaAPI() as api:
             list = ""
             anime = await api.execute(endpoint="/anime/releases/random?limit=50&include=id,name.main")
             if len(anime) > 1:
