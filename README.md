@@ -1,32 +1,17 @@
 # Anilibria-Api-Client
 ## О модуле
+### Информация
+Anilibria-API-Client - это клиент для работы с API написанный полностью на Python с использованием aiohttp
+
+Позднее будет доступна sync версия, в данный момент ведется разработка async версии и документации когда будет сделана async версия
 ### Доступные методы
 Документация: https://anilibria.top/api/docs/v1#/
 
-Из них сейчас доступны (позднее будет перенесено в Wiki):
-```python
-await api.accounts.otp_accept()
-await api.accounts.otp_get()
-await api.accounts.users_auth_login()
-await api.accounts.users_auth_logout()
-await api.accounts.users_auth_password_forget()
-await api.accounts.users_auth_password_reset()
-await api.accounts.users_auth_social_authenticate()
-await api.accounts.users_auth_social_login()
-await api.accounts.users_me_collections_references_age_ratings()
-await api.accounts.users_me_collections_references_genres()
-await api.accounts.users_me_collections_references_types()
-await api.accounts.users_me_collections_references_years()
-await api.accounts.users_me_collections_ids()
-await api.accounts.users_me_collections_releases_get()
-await api.accounts.users_me_collections_releases_post()
-```
+Документация модуля: ...
 ## Установка
 ### Терминал
 ```bash
-git clone repo
-```
-```bash
+git clone https://github.com/semen-bol/Anilibria-Api-Client.git
 pip install -r requirements.txt
 ```
 ### Зависимости
@@ -34,10 +19,10 @@ pip install -r requirements.txt
 aiohttp==3.12.15
 ```
 ## Использование
-### Базовое использование (два примера)
+### Базовое использование
 ```python
 from anilibria_client import AsyncAnilibriaAPI # Клиент
-from anilibria_client.exceptions import AnilibriaException, AnilibriaValidationException # Ошибкит
+from anilibria_client.exceptions import AnilibriaException, AnilibriaValidationException # Ошибки
 from anilibria_client.types import CollectionType, ContentType, AgeRating # Типизация в переменных
 
 # Использование
@@ -64,3 +49,14 @@ except AnilibriaException:
     data = "Ничего нет"
 
 ```
+## Issues/Contributing
+### Issues
+Ознокомившись с форматом Issues во вкладке Issues, идём писать о ошибке которую вы получили
+### Contributing
+После того как вы форкните репозиторий:
+
+1. Добавьте коммит с изменением в формате всеобщего соглашения о коммитах
+2. Откройте пулл реквест и укажите в ревью разработчика
+3. Опишите ваши изменения или исправления в проекте
+
+После проверки ваш пулл реквест будет рассмотрен и возможно замёрджен в main ветку

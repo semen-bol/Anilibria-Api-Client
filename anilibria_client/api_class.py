@@ -252,6 +252,7 @@ class AsyncBaseAPI:
         self,
         endpoint: str,
         headers: Optional[Dict[str, str]] = None,
+        json_data: Optional[Dict[str, Any]] = None,
         **kwargs
     ) -> Union[Dict[str, Any], str, bytes]:
         """
@@ -259,11 +260,12 @@ class AsyncBaseAPI:
         
         :param endpoint: Конечная точка API
         :param headers: Дополнительные заголовки
+        :param json_data: JSON тело запроса
         :param kwargs: Дополнительные аргументы для aiohttp
         :return: Ответ от API
         """
 
-        return await self._request('DELETE', endpoint, headers=headers, **kwargs)
+        return await self._request('DELETE', endpoint, json_data=json_data, headers=headers, **kwargs)
     
     async def patch(
         self,

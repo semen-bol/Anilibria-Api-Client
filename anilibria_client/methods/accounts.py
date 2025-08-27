@@ -1,6 +1,7 @@
 from ._libria import BaseMethod
 from ..types import *
 from typing import Optional, List, Dict, Any
+from datetime import datetime
 
 class AccountsMethod(BaseMethod):
     async def otp_get(
@@ -290,8 +291,79 @@ class AccountsMethod(BaseMethod):
             
             return await self._api.post("/accounts/users/me/collections/releases", json_data=result)
     
-    # ! /accounts/users/me/collections POST
-    # ! /accounts/users/me/collections DELETE
+    async def users_me_collections_add(
+            self, 
+            release_ids: List[int]
+    ):
+        """
+        Добавляет релизы в избранное авторизованного пользователя
+
+        :param release_id: ID релиза
+        """
+        params = [{"release_id": a} for a in release_ids]
+
+        return await self._api.post("/accounts/users/me/favorites", json_data=params)
+
+    async def users_me_collections_delete(
+            self, 
+            release_ids: List[int]
+    ):
+        """
+        Удаляет релизы из избранного авторизованного пользователя
+
+        :param release_id: ID релиза
+        """
+        params = [{"release_id": a} for a in release_ids]
+
+        return await self._api.delete("/accounts/users/me/favorites", json_data=params)
+    
+    async def users_me_views_history(
+            self,
+            page: Optional[int] = None,
+            limit: Optional[int] = None,
+            include: Optional[str] = None,
+            exclude: Optional[str] = None
+    ):
+        """
+        Возвращает историю просмотров эпизодов авторизованного пользователя
+
+        Args:
+            page: Опционально. Номер страницы
+            limit: Опционально. Лимит на страницу
+            include: Опционально. Список включаемых полей. Через запятую или множественные параметры. Поддерживается вложенность через точку.
+            exclude: Опционально. Список исключаемых полей. Через запятую или множественные параметры. Поддерживается вложенность через точку. Приоритет над include
+        """
+        params = {
+            "page": page,
+            "limit": limit,
+            "include": include,
+            "exclude": exclude
+        }
+        return await self._api.get("/accounts/users/me/views/history", params=params)
+
+    async def users_me_views_timecodes(
+            self,
+            since: Optional[str]
+    ):
+        """
+        Возвращает таймкоды по прогрессу просмотренных эпизодов
+        
+        :param since: Опционально. Возвращает только таймкоды, которые были добавлены после указанного времени (в iso формате). Example: 2025-05-12T07:20:50.52Z
+        """
+        params = {
+            "since": since
+        }
+        return await self._api.get("/accounts/users/me/views/timecodes", params=params)
+    # ! /accounts/users/me/views/timecodes POST
+    async def users_me_views_timecodes_update(
+            self
+    ):
+        pass
+    # ! /accounts/users/me/views/timecodes DELETE
+    async def users_me_views_timecodes_delete(
+            self
+    ):
+        pass
     
     async def users_me_profile(
             self, 
