@@ -317,7 +317,6 @@ class AccountsMethod(BaseMethod):
 
         return await self._api.delete("/accounts/users/me/favorites", json_data=params)
     
-    # ! /accounts/users/me/views/history
     async def users_me_views_history(
             self,
             page: Optional[int] = None,
@@ -341,7 +340,7 @@ class AccountsMethod(BaseMethod):
             "exclude": exclude
         }
         return await self._api.get("/accounts/users/me/views/history", params=params)
-    # ! /accounts/users/me/views/timecodes GET
+
     async def users_me_views_timecodes(
             self,
             since: Optional[str]
