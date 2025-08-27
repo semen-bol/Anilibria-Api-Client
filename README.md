@@ -11,9 +11,7 @@ Anilibria-API-Client - это клиент для работы с API напис
 ## Установка
 ### Терминал
 ```bash
-git clone repo
-```
-```bash
+git clone https://github.com/semen-bol/Anilibria-Api-Client.git
 pip install -r requirements.txt
 ```
 ### Зависимости
@@ -24,7 +22,7 @@ aiohttp==3.12.15
 ### Базовое использование
 ```python
 from anilibria_client import AsyncAnilibriaAPI # Клиент
-from anilibria_client.exceptions import AnilibriaException, AnilibriaValidationException # Ошибкит
+from anilibria_client.exceptions import AnilibriaException, AnilibriaValidationException # Ошибки
 from anilibria_client.types import CollectionType, ContentType, AgeRating # Типизация в переменных
 
 # Использование
