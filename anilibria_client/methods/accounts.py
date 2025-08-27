@@ -1,5 +1,6 @@
 from ._libria import BaseMethod
-from typing import Optional
+from ..types import *
+from typing import Optional, List, Dict, Any
 
 class AccountsMethod(BaseMethod):
     async def otp_get(
@@ -104,13 +105,201 @@ class AccountsMethod(BaseMethod):
 
         return await self._api.get("/accounts/users/auth/social/authenticate", params=query)
     
+    async def users_auth_password_forget(
+            self,
+            email: str
+    ): 
+        """
+        Отправление ссылки на восстановление забытого пароля
+
+        :param email: Email аккаунта
+        """
+
+        data = {
+            "email": email
+        }
+
+        return await self._api.post("/accounts/users/auth/password/forget", json_data=data)
+    
+    async def users_auth_password_reset(
+            self,
+            token: str,
+            password: str,
+            password_confirmation: str
+    ): 
+        """
+        Сброс и установка нового пароля
+        
+        :param token: Токен с email
+        :param password: Пароль
+        :param password_confirmation: Подтверждение пароля
+        """
+
+        data = {
+            "token": token,
+            "password": password,
+            "password_confirmation": password_confirmation
+        }
+
+        return await self._api.post("/accounts/users/auth/password/reset", json_data=data)
+    
+    async def users_me_collections_references_age_ratings(
+            self
+    ):
+        """
+        Возвращает список возрастных рейтингов в коллекциях текущего пользователя (auth need)
+        """
+
+        return await self._api.get("/accounts/users/me/collections/references/age-ratings")
+    
+    async def users_me_collections_references_genres(
+            self
+    ):
+        """
+        Возвращает список жанров в коллекциях текущего пользователя (auth need)
+        """
+
+        return await self._api.get("/accounts/users/me/collections/references/genres")
+    
+    async def users_me_collections_references_types(
+            self
+    ):
+        """
+        Возвращает список типов в коллекциях текущего пользователя (auth need)
+        """
+
+        return await self._api.get("/accounts/users/me/collections/references/types")
+    
+    async def users_me_collections_references_years(
+            self
+    ):
+        """
+        Возвращает список годов в коллекциях текущего пользователя (auth need)
+        """
+
+        return await self._api.get("/accounts/users/me/collections/references/years")
+    
+    async def users_me_collections_ids(
+            self      
+    ):
+        """
+        Возвращает данные по идентификаторам релизов и типов коллекций авторизованного пользователя
+        """
+        return await self._api.get("/accounts/users/me/collections/ids")
+    
+    async def users_me_collections_releases_get(
+            self, 
+            type_of_collection: CollectionType,
+            page: Optional[int] = None,
+            limit: Optional[int] = None,
+            genres: Optional[str] = None,
+            types: Optional[List[ContentType]] = None,
+            years: Optional[str] = None,
+            search: Optional[str] = None,
+            age_ratings: Optional[List[AgeRating]] = None,
+            include: Optional[str] = None,
+            exclude: Optional[str] = None
+        ):
+            """
+            Возвращает данные по релизам из определенной коллекции авторизованного пользователя
+            
+            Args:
+                type_of_collection: Тип коллекции (обязательный параметр)
+                page: Номер страницы
+                limit: Лимит элементов на странице
+                genres: Жанры через запятую
+                types: Типы контента
+                years: Годы через запятую
+                search: Поисковая строка
+                age_ratings: Возрастные рейтинги
+                include: Поля для включения
+                exclude: Поля для исключения
+            """
+            params = {
+                'page': page,
+                'limit': limit,
+                'type_of_collection': type_of_collection.value,
+                'include': include,
+                'exclude': exclude
+            }
+            
+            if genres:
+                params['f[genres]'] = genres
+            if types:
+                params['f[types]'] = [t.value for t in types]
+            if years:
+                params['f[years]'] = years
+            if search:
+                params['f[search]'] = search
+            if age_ratings:
+                params['f[age_ratings]'] = [r.value for r in age_ratings]
+            
+            return await self._api.get("/accounts/users/me/collections/releases", params=params)
+    
+    async def users_me_collections_releases_post(
+            self, 
+            type_of_collection: CollectionType,
+            page: Optional[int] = None,
+            limit: Optional[int] = None,
+            genres: Optional[str] = None,
+            types: Optional[List[ContentType]] = None,
+            years: Optional[str] = None,
+            search: Optional[str] = None,
+            age_ratings: Optional[List[AgeRating]] = None,
+            include: Optional[str] = None,
+            exclude: Optional[str] = None
+        ):
+            """
+            Возвращает данные по релизам из определенной коллекции авторизованного пользователя
+            
+            Args:
+                type_of_collection: Тип коллекции (обязательный параметр)
+                page: Номер страницы
+                limit: Лимит элементов на странице
+                genres: Жанры через запятую
+                types: Типы контента
+                years: Годы через запятую
+                search: Поисковая строка
+                age_ratings: Возрастные рейтинги
+                include: Поля для включения
+                exclude: Поля для исключения
+            """
+            result = {
+                'page': page,
+                'limit': limit,
+                'type_of_collection': type_of_collection.value,
+                'include': include,
+                'exclude': exclude
+            }
+            
+            filters = {}
+            
+            if genres:
+                filters['genres'] = genres
+            if types:
+                filters['types'] = [t.value for t in types]
+            if years:
+                filters['years'] = years
+            if search:
+                filters['search'] = search
+            if age_ratings:
+                filters['age_ratings'] = [r.value for r in age_ratings]
+            
+            if filters:
+                result['f'] = filters
+            
+            return await self._api.post("/accounts/users/me/collections/releases", json_data=result)
+    
+    # ! /accounts/users/me/collections POST
+    # ! /accounts/users/me/collections DELETE
+    
     async def users_me_profile(
             self, 
             include: Optional[str] = None, 
             exclude: Optional[str] = None
     ):
         """
-        Возвращает данные профиля авторизованного пользователя
+        Возвращает данные профиля авторизованного пользователя (auth need)
 
         :param include: Опционально. Список включаемых полей. Через запятую или множественные параметры. Поддерживается вложенность через точку. Example : id,type.genres
         :param exclude: Опционально. Список исключаемых полей. Через запятую или множественные параметры. Поддерживается вложенность через точку. Приоритет над include Example : poster,description
