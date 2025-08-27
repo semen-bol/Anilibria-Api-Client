@@ -5,6 +5,7 @@ from anilibria_client.exceptions import AnilibriaException, AnilibriaValidationE
 from anilibria_client.types import CollectionType, ContentType, AgeRating
 from unittest import IsolatedAsyncioTestCase
 from pprint import pprint
+from datetime import datetime, timezone
 
 
 class Help:
@@ -31,8 +32,17 @@ class Test(IsolatedAsyncioTestCase):
 
         api_auth = AsyncAnilibriaAPI(authorization=f"Bearer {token}")
         data = await api_auth.accounts.users_me_profile()
-        
-        age_ratings = await api_auth.accounts.users_me_collections_references_age_ratings()
+
+        history = await api_auth.accounts.users_me_views_history()
+
+        specific_time = datetime(2025, 5, 12, 7, 20, 50, 520000, tzinfo=timezone.utc)
+        formatted_time = specific_time.strftime("%Y-%m-%dT%H:%M:%S.%f")[:-4] + "Z"
+        his = await api_auth.accounts.users_me_views_timecodes(since=formatted_time)
+
+        """add = await api_auth.accounts.users_me_collections_add(release_ids=[1111, 9023])
+        delete = await api_auth.accounts.users_me_collections_delete(release_ids=[1111, 9023])"""
+
+        """age_ratings = await api_auth.accounts.users_me_collections_references_age_ratings()
         genres = await api_auth.accounts.users_me_collections_references_genres()
         types = await api_auth.accounts.users_me_collections_references_types()
         years = await api_auth.accounts.users_me_collections_references_years()
@@ -53,9 +63,9 @@ class Test(IsolatedAsyncioTestCase):
             search="Мастера Меча Онлайн: Порядковый ранг",
             age_ratings=[AgeRating.R16_PLUS],
             include="id,name.main,genres.name"
-        )
+        )"""
 
-        pprint(object=(data, ids))
+        pprint(object=(data, his))
         
 
 if __name__ == "__main__":

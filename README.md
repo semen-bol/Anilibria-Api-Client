@@ -1,26 +1,13 @@
 # Anilibria-Api-Client
 ## О модуле
+### Информация
+Anilibria-API-Client - это клиент для работы с API написанный полностью на Python с использованием aiohttp
+
+Позднее будет доступна sync версия, в данный момент ведется разработка async версии и документации когда будет сделана async версия
 ### Доступные методы
 Документация: https://anilibria.top/api/docs/v1#/
 
-Из них сейчас доступны (позднее будет перенесено в Wiki):
-```python
-await api.accounts.otp_accept()
-await api.accounts.otp_get()
-await api.accounts.users_auth_login()
-await api.accounts.users_auth_logout()
-await api.accounts.users_auth_password_forget()
-await api.accounts.users_auth_password_reset()
-await api.accounts.users_auth_social_authenticate()
-await api.accounts.users_auth_social_login()
-await api.accounts.users_me_collections_references_age_ratings()
-await api.accounts.users_me_collections_references_genres()
-await api.accounts.users_me_collections_references_types()
-await api.accounts.users_me_collections_references_years()
-await api.accounts.users_me_collections_ids()
-await api.accounts.users_me_collections_releases_get()
-await api.accounts.users_me_collections_releases_post()
-```
+Документация модуля: ...
 ## Установка
 ### Терминал
 ```bash
@@ -34,7 +21,7 @@ pip install -r requirements.txt
 aiohttp==3.12.15
 ```
 ## Использование
-### Базовое использование (два примера)
+### Базовое использование
 ```python
 from anilibria_client import AsyncAnilibriaAPI # Клиент
 from anilibria_client.exceptions import AnilibriaException, AnilibriaValidationException # Ошибкит
