@@ -10,7 +10,8 @@
 
 Anilibria-API-Client - this a async/sync client to work with Anilibria API, use a aiohttp. Full writed at python
 
-## Установка
+## Installing
+Tested at python 3.13
 ### pip
 ```bash
 $ pip install anilibria-api-client
