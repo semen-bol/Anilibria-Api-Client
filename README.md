@@ -1,13 +1,17 @@
 # Anilibria-Api-Client
-## О модуле
-### Информация
-Anilibria-API-Client - это клиент для работы с API написанный полностью на Python с использованием aiohttp
 
-Документация API: https://anilibria.top/api/docs/v1#/
+[![pypi](https://img.shields.io/badge/anilibria_on_PyPi-blue)]()
+![version](https://img.shields.io/badge/Project_version-0.1.0-blue)
+![licence](https://img.shields.io/badge/License-MIT-green)
+![python](https://img.shields.io/badge/Python-3.13%2B-blue)
+
+> [!CAUTION]  
+> **It is not an official wrapper.** [Official AniLibria's Swagger](https://anilibria.top/api/docs/v1)
+
+Anilibria-API-Client - это клиент для работы с API написанный полностью на Python с использованием aiohttp
 
 Документация модуля: ...
 
-Модуль на PyPI: ...
 ## Установка
 ### Терминал
 ```bash
