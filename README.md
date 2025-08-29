@@ -8,6 +8,8 @@ Anilibria-API-Client - это клиент для работы с API напис
 Документация: https://anilibria.top/api/docs/v1#/
 
 Документация модуля: ...
+
+Модуль на PyPI: ...
 ## Установка
 ### Терминал
 ```bash
