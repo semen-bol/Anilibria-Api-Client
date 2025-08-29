@@ -15,20 +15,19 @@ Anilibria-API-Client - это клиент для работы с API напис
 ```bash
 $ pip install anilibria-api-client
 ```
-## Использование
+## Usage
 ```python
-from anilibria_client import AsyncAnilibriaAPI # Клиент
-from anilibria_client.exceptions import AnilibriaException, AnilibriaValidationException # Ошибки
-from anilibria_client.types import * # Типизация в переменных, * - импорт всего, но рекомендуется импортировать конкретные типы
-from anilibria_client.models import * # Модели, в некоторых методах используются модели, * - импорт всего, но рекомендуется импортировать конкретные модели
+from anilibria_client import AsyncAnilibriaAPI # Client
+from anilibria_client.exceptions import AnilibriaException, AnilibriaValidationException # Errors
+from anilibria_client.types import * # Types for some methods
+from anilibria_client.models import * # Models for some methods
 
-# Использование
 async def main():
-    async with AsyncAnilibriaAPI() as api: # Использование через async with
+    async with AsyncAnilibriaAPI() as api: # async with
         await api.teams.users(include="nickname")
-        
-    api_js_type = AsyncAnilibriaAPI() # Использование Like JS
-    await api_js_type.teams.users(include="nickname")
+
+    api = AsyncAnilibriaAPI() # like js support
+    await api.teams.users(include="nickname")
 ```
 
 ## Documentation 📃
@@ -36,7 +35,7 @@ Docs..
 
 ## Issues/Contributing
 ### Issues
-[Issues](https://github.com/semen-bol/Anilibria-Api-Client/issues)
+Report for any issues [here](https://github.com/semen-bol/Anilibria-Api-Client/issues)
 ### Contributing
 We allow contributing! Read the [CODE_OF_CONDUCT.md](https://github.com/semen-bol/Anilibria-Api-Client/blob/main/CODE_OF_CONDUCT.md)
 
