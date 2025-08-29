@@ -1,7 +1,6 @@
 from ._libria import BaseMethod
 from ._helper import validate_filters, create_filters_from_release
-from ..types import *
-from ..models import *
+from ..models import Release
 
 
 class AnimeMethod(BaseMethod):

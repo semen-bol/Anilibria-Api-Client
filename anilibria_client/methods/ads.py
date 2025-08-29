@@ -1,5 +1,4 @@
 from ._libria import BaseMethod
-from ..types import *
 
 
 class AdsMethod(BaseMethod):

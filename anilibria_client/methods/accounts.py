@@ -1,6 +1,6 @@
 from ._libria import BaseMethod
-from ..types import *
-from ..models import *
+from ..types import AgeRating, ContentType, CollectionType
+from ..models import TimeCode
 from typing import Optional, List
 
 class AccountsMethod(BaseMethod):
