@@ -91,9 +91,6 @@ async def create_filters_from_release(release: Release) -> Dict[str, Any]:
     
     Args:
         release: Объект Release с параметрами фильтрации
-        
-    Returns:
-        Словарь с фильтрами в нужном формате
     """
     filters = {}
     

@@ -1,7 +1,7 @@
 import unittest
 
 from anilibria_client import AsyncAnilibriaAPI
-from anilibria_client.types import *
+from anilibria_client.types import SortType, ProductionStatusesType, PublishStatusesType
 from anilibria_client.models import Release
 from unittest import IsolatedAsyncioTestCase
 from pprint import pprint

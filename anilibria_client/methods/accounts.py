@@ -403,5 +403,3 @@ class AccountsMethod(BaseMethod):
             list_.append({"release_episode_id": episode})
 
         return await self._api.delete("/accounts/users/me/views/timecodes", json_data=list_)
-
-    
