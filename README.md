@@ -3,7 +3,7 @@
 ### Информация
 Anilibria-API-Client - это клиент для работы с API написанный полностью на Python с использованием aiohttp
 
-Документация: https://anilibria.top/api/docs/v1#/
+Документация API: https://anilibria.top/api/docs/v1#/
 
 Документация модуля: ...
 
