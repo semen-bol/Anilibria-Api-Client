@@ -23,7 +23,8 @@ aiohttp==3.12.15
 ```python
 from anilibria_client import AsyncAnilibriaAPI # Клиент
 from anilibria_client.exceptions import AnilibriaException, AnilibriaValidationException # Ошибки
-from anilibria_client.types import CollectionType, ContentType, AgeRating # Типизация в переменных
+from anilibria_client.types import * # Типизация в переменных, * - импорт всего, но рекомендуется импортировать конкретные типы
+from anilibria_client.models import * # Модели, в некоторых методах используются модели, * - импорт всего, но рекомендуется импортировать конкретные модели
 
 # Использование
 async def main():

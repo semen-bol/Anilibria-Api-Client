@@ -1,5 +1,4 @@
 import unittest
-import asyncio
 
 from anilibria_client import AsyncAnilibriaAPI, AnilibriaException
 from unittest import IsolatedAsyncioTestCase
