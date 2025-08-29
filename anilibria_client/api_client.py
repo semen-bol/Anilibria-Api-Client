@@ -4,7 +4,10 @@ from typing import Optional, Dict, Any, Optional, Union
 from .methods import (
     AccountsMethod,
     AdsMethod,
-    AnimeMethod
+    AnimeMethod,
+    AppMethod,
+    MediaMethod,
+    TeamsMethod
 )
 
 class AsyncAnilibriaAPI(AsyncBaseAPI):
@@ -25,6 +28,9 @@ class AsyncAnilibriaAPI(AsyncBaseAPI):
         self.accounts = AccountsMethod(api=self)
         self.ads = AdsMethod(api=self)
         self.anime = AnimeMethod(api=self)
+        self.app = AppMethod(api=self)
+        self.media = MediaMethod(api=self)
+        self.teams = TeamsMethod(api=self)
 
     async def execute(
         self,

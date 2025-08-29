@@ -17,6 +17,7 @@ pip install -r requirements.txt
 ### Зависимости
 ```
 aiohttp==3.12.15
+pydantic==2.11.7
 ```
 ## Использование
 ### Базовое использование
