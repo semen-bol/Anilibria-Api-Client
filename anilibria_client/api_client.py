@@ -2,7 +2,9 @@ from .api_class import AsyncBaseAPI
 from typing import Optional, Dict, Any, Optional, Union
 
 from .methods import (
-    AccountsMethod
+    AccountsMethod,
+    AdsMethod,
+    AnimeMethod
 )
 
 class AsyncAnilibriaAPI(AsyncBaseAPI):
@@ -21,6 +23,8 @@ class AsyncAnilibriaAPI(AsyncBaseAPI):
         super().__init__(base_url=base_url, headers=headers)
 
         self.accounts = AccountsMethod(api=self)
+        self.ads = AdsMethod(api=self)
+        self.anime = AnimeMethod(api=self)
 
     async def execute(
         self,

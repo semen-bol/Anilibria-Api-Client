@@ -1,7 +1,7 @@
 from ._libria import BaseMethod
 from ..types import *
-from typing import Optional, List, Dict, Any
-from datetime import datetime
+from ..models import *
+from typing import Optional, List
 
 class AccountsMethod(BaseMethod):
     async def otp_get(
@@ -234,6 +234,8 @@ class AccountsMethod(BaseMethod):
                 params['f[search]'] = search
             if age_ratings:
                 params['f[age_ratings]'] = [r.value for r in age_ratings]
+
+            print(params)
             
             return await self._api.get("/accounts/users/me/collections/releases", params=params)
     
@@ -317,6 +319,25 @@ class AccountsMethod(BaseMethod):
 
         return await self._api.delete("/accounts/users/me/favorites", json_data=params)
     
+    async def users_me_profile(
+            self, 
+            include: Optional[str] = None, 
+            exclude: Optional[str] = None
+    ):
+        """
+        Возвращает данные профиля авторизованного пользователя (auth need)
+
+        :param include: Опционально. Список включаемых полей. Через запятую или множественные параметры. Поддерживается вложенность через точку. Example : id,type.genres
+        :param exclude: Опционально. Список исключаемых полей. Через запятую или множественные параметры. Поддерживается вложенность через точку. Приоритет над include Example : poster,description
+        """
+
+        query = {
+            'include': include,
+            'exclude': exclude
+        }
+
+        return await self._api.get("/accounts/users/me/profile", params=query)
+    
     async def users_me_views_history(
             self,
             page: Optional[int] = None,
@@ -354,34 +375,33 @@ class AccountsMethod(BaseMethod):
             "since": since
         }
         return await self._api.get("/accounts/users/me/views/timecodes", params=params)
-    # ! /accounts/users/me/views/timecodes POST
+
     async def users_me_views_timecodes_update(
-            self
+            self,
+            timecode_list: List[TimeCode]
     ):
-        pass
-    # ! /accounts/users/me/views/timecodes DELETE
-    async def users_me_views_timecodes_delete(
-            self
-    ):
-        pass
+        """
+        Обновляет таймкоды просмотренных эпизодов
+
+        :param timecode_list: Лист из обьектов TimeCode. Example: [TimeCode(...)]
+        """
+        json = [timecode.model_dump(mode='json') for timecode in timecode_list]
+        
+        return await self._api.post("/accounts/users/me/views/timecodes", json_data=json)
     
-    async def users_me_profile(
-            self, 
-            include: Optional[str] = None, 
-            exclude: Optional[str] = None
+    async def users_me_views_timecodes_delete(
+            self,
+            episode_id_list: List[str]
     ):
         """
-        Возвращает данные профиля авторизованного пользователя (auth need)
-
-        :param include: Опционально. Список включаемых полей. Через запятую или множественные параметры. Поддерживается вложенность через точку. Example : id,type.genres
-        :param exclude: Опционально. Список исключаемых полей. Через запятую или множественные параметры. Поддерживается вложенность через точку. Приоритет над include Example : poster,description
+        Удаляет данные по таймкодам просмотров для указанных эпизодов
+        
+        :param episode_id_list: Лист из episode_id. Example: ["id", "id"]
         """
+        list_ = []
+        for episode in episode_id_list:
+            list_.append({"release_episode_id": episode})
 
-        query = {
-            'include': include,
-            'exclude': exclude
-        }
-
-        return await self._api.get("/accounts/users/me/profile", params=query)
+        return await self._api.delete("/accounts/users/me/views/timecodes", json_data=list_)
 
     
