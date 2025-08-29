@@ -1,9 +1,9 @@
 # Anilibria-Api-Client (tests)
-## Запуск тестов
+## Start test
 ```bash
-py -m tests.название_теста
+py -m tests.test_name
 ```
-Например:
+Example:
 ```bash
 py -m tests.ads_tests
 ```
