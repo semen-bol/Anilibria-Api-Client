@@ -1,7 +1,7 @@
 # Anilibria-Api-Client
 
 [![pypi](https://img.shields.io/badge/anilibria_api_client_on_PyPi-blue)]()
-![version](https://img.shields.io/badge/Version-0.1.0-blue)
+![version](https://img.shields.io/badge/Version-0.1.1-blue)
 ![licence](https://img.shields.io/badge/License-MIT-green)
 ![python](https://img.shields.io/badge/Python-3.13%2B-blue)
 
@@ -10,7 +10,8 @@
 
 Anilibria-API-Client - this a async/sync client to work with Anilibria API, use a aiohttp. Full writed at python
 
-## Установка
+## Installing
+Tested at python 3.13
 ### pip
 ```bash
 $ pip install anilibria-api-client
