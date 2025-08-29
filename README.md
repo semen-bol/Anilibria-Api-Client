@@ -10,21 +10,12 @@
 
 Anilibria-API-Client - это клиент для работы с API написанный полностью на Python с использованием aiohttp
 
-Документация модуля: ...
-
 ## Установка
-### Терминал
+### pip
 ```bash
-git clone https://github.com/semen-bol/Anilibria-Api-Client.git
-pip install -r requirements.txt
-```
-### Зависимости
-```
-aiohttp==3.12.15
-pydantic==2.11.7
+$ pip install anilibria-api-client
 ```
 ## Использование
-### Базовое использование
 ```python
 from anilibria_client import AsyncAnilibriaAPI # Клиент
 from anilibria_client.exceptions import AnilibriaException, AnilibriaValidationException # Ошибки
@@ -34,42 +25,20 @@ from anilibria_client.models import * # Модели, в некоторых ме
 # Использование
 async def main():
     async with AsyncAnilibriaAPI() as api: # Использование через async with
-        pass
+        await api.teams.users(include="nickname")
+        
     api_js_type = AsyncAnilibriaAPI() # Использование Like JS
-```
-### Структура методов
-```
-api.{название_подветки}.{полное_название_метода}
-```
-```python
-await api.accounts.users_me_collections_references_age_ratings()
-```
-Документация: [users_me_collections_references_age_ratings](https://anilibria.top/api/docs/v1#/%D0%90%D0%BA%D0%BA%D0%B0%D1%83%D0%BD%D1%82%D1%8B.%D0%9F%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D1%82%D0%B5%D0%BB%D0%B8.%D0%9C%D0%BE%D0%B5.%D0%9A%D0%BE%D0%BB%D0%BB%D0%B5%D0%BA%D1%86%D0%B8%D0%B8.%D0%A1%D0%BF%D1%80%D0%B0%D0%B2%D0%BE%D1%87%D0%BD%D0%B8%D0%BA%D0%B8/8b157a7586e3c56605e42d0d328ad854)
-## Поддержка execute
-```python
-api = AsyncAnilibriaAPI()
-anime = await api.execute(endpoint="/anime/releases/random?limit=50&include=id,name.main")
+    await api_js_type.teams.users(include="nickname")
 ```
 
-## Ошибки
-### Базовая валидация ошибок
-```python
-from anilibria_client.exceptions import AnilibriaException
+## Documentation 📃
+Docs..
 
-try: 
-    data = await api.accounts.users_me_profile()
-except AnilibriaException:
-    data = "Ничего нет"
-
-```
 ## Issues/Contributing
 ### Issues
-Ознокомившись с форматом Issues во вкладке Issues, идём писать о ошибке которую вы получили
+[Issues](https://github.com/semen-bol/Anilibria-Api-Client/issues)
 ### Contributing
-После того как вы форкните репозиторий:
+We allow contributing! Read the [CODE_OF_CONDUCT.md](https://github.com/semen-bol/Anilibria-Api-Client/blob/main/CODE_OF_CONDUCT.md)
 
-1. Добавьте коммит с изменением в формате всеобщего соглашения о коммитах
-2. Откройте пулл реквест и укажите в ревью разработчика
-3. Опишите ваши изменения или исправления в проекте
-
-После проверки ваш пулл реквест будет рассмотрен и возможно замёрджен в main ветку
+## License 📄
+Anilibria-Api-Client is [MIT](https://github.com/semen-bol/Anilibria-Api-Client/blob/main/LICENSE) licenced.
