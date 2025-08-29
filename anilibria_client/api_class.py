@@ -4,7 +4,8 @@ from urllib.parse import urlencode, urljoin, quote
 
 from .exceptions import AnilibriaValidationException, AnilibriaException
 
-# https://github.com/semen-bol/API-Class
+# https://github.com/semen-bol/API-Class 
+# Используется основа от AsyncBaseAPI изменённая под Anilibria...
 
 class AsyncBaseAPI:
     """

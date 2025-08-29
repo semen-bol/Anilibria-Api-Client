@@ -1,63 +1,43 @@
 # Anilibria-Api-Client
-## О модуле
-### Информация
-Anilibria-API-Client - это клиент для работы с API написанный полностью на Python с использованием aiohttp
 
-Позднее будет доступна sync версия, в данный момент ведется разработка async версии и документации когда будет сделана async версия
-### Доступные методы
-Документация: https://anilibria.top/api/docs/v1#/
+[![pypi](https://img.shields.io/badge/anilibria_api_client_on_PyPi-blue)]()
+![version](https://img.shields.io/badge/Version-0.1.0-blue)
+![licence](https://img.shields.io/badge/License-MIT-green)
+![python](https://img.shields.io/badge/Python-3.13%2B-blue)
 
-Документация модуля: ...
+> [!CAUTION]  
+> **It is not an official wrapper.** [Official AniLibria's Swagger](https://anilibria.top/api/docs/v1)
+
+Anilibria-API-Client - this a async/sync client to work with Anilibria API, use a aiohttp. Full writed at python
+
 ## Установка
-### Терминал
+### pip
 ```bash
-git clone https://github.com/semen-bol/Anilibria-Api-Client.git
-pip install -r requirements.txt
+$ pip install anilibria-api-client
 ```
-### Зависимости
-```
-aiohttp==3.12.15
-```
-## Использование
-### Базовое использование
+## Usage
 ```python
-from anilibria_client import AsyncAnilibriaAPI # Клиент
-from anilibria_client.exceptions import AnilibriaException, AnilibriaValidationException # Ошибки
-from anilibria_client.types import * # Типизация в переменных, * - импорт всего, но рекомендуется импортировать конкретные типы
-from anilibria_client.models import * # Модели, в некоторых методах используются модели, * - импорт всего, но рекомендуется импортировать конкретные модели
+from anilibria_client import AsyncAnilibriaAPI # Client
+from anilibria_client.exceptions import AnilibriaException, AnilibriaValidationException # Errors
+from anilibria_client.types import * # Types for some methods
+from anilibria_client.models import * # Models for some methods
 
-# Использование
 async def main():
-    async with AsyncAnilibriaAPI() as api: # Использование через async with
-        pass
-    api_js_type = AsyncAnilibriaAPI() # Использование Like JS
+    async with AsyncAnilibriaAPI() as api: # async with
+        await api.teams.users(include="nickname")
+
+    api = AsyncAnilibriaAPI() # like js support
+    await api.teams.users(include="nickname")
 ```
 
-## Поддержка execute
-```python
-api = AsyncAnilibriaAPI()
-anime = await api.execute(endpoint="/anime/releases/random?limit=50&include=id,name.main")
-```
+## Documentation 📃
+Docs..
 
-## Ошибки
-### Базовая валидация ошибок
-```python
-from anilibria_client.exceptions import AnilibriaException
-
-try: 
-    data = await api.accounts.users_me_profile()
-except AnilibriaException:
-    data = "Ничего нет"
-
-```
 ## Issues/Contributing
 ### Issues
-Ознокомившись с форматом Issues во вкладке Issues, идём писать о ошибке которую вы получили
+Report for any issues [here](https://github.com/semen-bol/Anilibria-Api-Client/issues)
 ### Contributing
-После того как вы форкните репозиторий:
+We allow contributing! Read the [CODE_OF_CONDUCT.md](https://github.com/semen-bol/Anilibria-Api-Client/blob/main/CODE_OF_CONDUCT.md)
 
-1. Добавьте коммит с изменением в формате всеобщего соглашения о коммитах
-2. Откройте пулл реквест и укажите в ревью разработчика
-3. Опишите ваши изменения или исправления в проекте
-
-После проверки ваш пулл реквест будет рассмотрен и возможно замёрджен в main ветку
+## License 📄
+Anilibria-Api-Client is [MIT](https://github.com/semen-bol/Anilibria-Api-Client/blob/main/LICENSE) licenced.
