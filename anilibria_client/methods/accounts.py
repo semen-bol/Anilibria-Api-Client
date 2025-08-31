@@ -1,6 +1,6 @@
 from ._libria import BaseMethod
-from ..types import AgeRating, ContentType, CollectionType
-from ..models import TimeCode
+from ..models import TimeCode, ReleaseCollection
+from ._helper import validate_collection, validated_json_collection
 from typing import Optional, List
 
 class AccountsMethod(BaseMethod):
@@ -190,108 +190,49 @@ class AccountsMethod(BaseMethod):
     
     async def users_me_collections_releases_get(
             self, 
-            type_of_collection: CollectionType,
-            page: Optional[int] = None,
-            limit: Optional[int] = None,
-            genres: Optional[str] = None,
-            types: Optional[List[ContentType]] = None,
-            years: Optional[str] = None,
-            search: Optional[str] = None,
-            age_ratings: Optional[List[AgeRating]] = None,
-            include: Optional[str] = None,
-            exclude: Optional[str] = None
+            release_collection: ReleaseCollection
         ):
             """
             Возвращает данные по релизам из определенной коллекции авторизованного пользователя
             
             Args:
-                type_of_collection: Тип коллекции (обязательный параметр)
-                page: Номер страницы
-                limit: Лимит элементов на странице
-                genres: Жанры через запятую
-                types: Типы контента
-                years: Годы через запятую
-                search: Поисковая строка
-                age_ratings: Возрастные рейтинги
-                include: Поля для включения
-                exclude: Поля для исключения
+                release_collection: тело ReleaseCollection
             """
             params = {
-                'page': page,
-                'limit': limit,
-                'type_of_collection': type_of_collection.value,
-                'include': include,
-                'exclude': exclude
+                'page': release_collection.page,
+                'limit': release_collection.limit,
+                'type_of_collection': release_collection.type_of_collection.value,
+                'include': release_collection.include,
+                'exclude': release_collection.exclude
             }
             
-            if genres:
-                params['f[genres]'] = genres
-            if types:
-                params['f[types]'] = [t.value for t in types]
-            if years:
-                params['f[years]'] = years
-            if search:
-                params['f[search]'] = search
-            if age_ratings:
-                params['f[age_ratings]'] = [r.value for r in age_ratings]
-
-            print(params)
+            coll = await validate_collection(params=release_collection)
+            final_params = {**params, **coll}
             
-            return await self._api.get("/accounts/users/me/collections/releases", params=params)
+            return await self._api.get("/accounts/users/me/collections/releases", params=final_params)
     
     async def users_me_collections_releases_post(
             self, 
-            type_of_collection: CollectionType,
-            page: Optional[int] = None,
-            limit: Optional[int] = None,
-            genres: Optional[str] = None,
-            types: Optional[List[ContentType]] = None,
-            years: Optional[str] = None,
-            search: Optional[str] = None,
-            age_ratings: Optional[List[AgeRating]] = None,
-            include: Optional[str] = None,
-            exclude: Optional[str] = None
+            release_collection: ReleaseCollection
         ):
             """
             Возвращает данные по релизам из определенной коллекции авторизованного пользователя
             
             Args:
-                type_of_collection: Тип коллекции (обязательный параметр)
-                page: Номер страницы
-                limit: Лимит элементов на странице
-                genres: Жанры через запятую
-                types: Типы контента
-                years: Годы через запятую
-                search: Поисковая строка
-                age_ratings: Возрастные рейтинги
-                include: Поля для включения
-                exclude: Поля для исключения
+                release_collection: тело ReleaseCollection
             """
-            result = {
-                'page': page,
-                'limit': limit,
-                'type_of_collection': type_of_collection.value,
-                'include': include,
-                'exclude': exclude
+            json = {
+                'page': release_collection.page,
+                'limit': release_collection.limit,
+                'type_of_collection': release_collection.type_of_collection.value,
+                'include': release_collection.include,
+                'exclude': release_collection.exclude
             }
             
-            filters = {}
-            
-            if genres:
-                filters['genres'] = genres
-            if types:
-                filters['types'] = [t.value for t in types]
-            if years:
-                filters['years'] = years
-            if search:
-                filters['search'] = search
-            if age_ratings:
-                filters['age_ratings'] = [r.value for r in age_ratings]
-            
-            if filters:
-                result['f'] = filters
-            
-            return await self._api.post("/accounts/users/me/collections/releases", json_data=result)
+            coll = await validated_json_collection(release=release_collection)
+            final_json = {**json, **coll}
+
+            return await self._api.post("/accounts/users/me/collections/releases", json_data=final_json)
     
     async def users_me_collections_add(
             self, 

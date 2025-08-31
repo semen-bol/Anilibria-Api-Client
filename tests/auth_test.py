@@ -1,6 +1,7 @@
 import unittest
 
-from anilibria_client import AsyncAnilibriaAPI, AnilibriaException
+from anilibria_client import AsyncAnilibriaAPI
+from anilibria_client.exceptions import AnilibriaException
 from unittest import IsolatedAsyncioTestCase
 from pprint import pprint
 
@@ -14,10 +15,9 @@ class Help:
 
             return res.get("token")
         except AnilibriaException as e:
-            print(e)
             print("Введены неправильные данные, попробуйте еще раз!")
 
-            await self.auth(api_without_auth=api_without_auth)
+            return await self.auth(api_without_auth=api_without_auth)
 
 
 class Test(IsolatedAsyncioTestCase):

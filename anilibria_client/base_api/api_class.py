@@ -1,11 +1,9 @@
 import aiohttp
+
 from typing import Dict, Any, Optional, Union
 from urllib.parse import urlencode, urljoin, quote
+from ..exceptions import AnilibriaValidationException, AnilibriaException
 
-from .exceptions import AnilibriaValidationException, AnilibriaException
-
-# https://github.com/semen-bol/API-Class 
-# Используется основа от AsyncBaseAPI изменённая под Anilibria...
 
 class AsyncBaseAPI:
     """
@@ -44,11 +42,6 @@ class AsyncBaseAPI:
             self.session = None
             self._own_session = False
     
-    def set_session(self, session: aiohttp.ClientSession):
-        """Установить внешнюю сессию"""
-        self.session = session
-        self._own_session = False
-    
     async def _get_session(self) -> aiohttp.ClientSession:
         """Получить сессию, создавая новую если нужно"""
         if self.session is None:
@@ -68,7 +61,6 @@ class AsyncBaseAPI:
         if not params:
             return ""
         
-        # Фильтруем None значения
         filtered_params = {k: v for k, v in params.items() if v is not None}
         if not filtered_params:
             return ""
@@ -157,8 +149,8 @@ class AsyncBaseAPI:
                     if error_data.get("errors"):
                         raise AnilibriaValidationException(error_data)
                     else:
-                        raise AnilibriaValidationException({"errors": {"general": ["Validation failed"]}})
-                    
+                        raise AnilibriaValidationException({"error": "Ошибка валидации входных параметров"})    
+
                 response.raise_for_status()
                 
                 content_type = response.headers.get('Content-Type', '')

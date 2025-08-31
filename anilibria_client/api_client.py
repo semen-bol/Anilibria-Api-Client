@@ -1,4 +1,4 @@
-from .api_class import AsyncBaseAPI
+from .base_api.api_class import AsyncBaseAPI
 from typing import Optional, Dict, Any, Optional, Union
 
 from .methods import (
@@ -17,12 +17,13 @@ class AsyncAnilibriaAPI(AsyncBaseAPI):
     def __init__(
             self,
             base_url: str = "https://anilibria.top/api/v1",
-            authorization: str = "Bearer" # Получить с помощью accounts.users_auth_login() 
+            authorization: str = "Bearer"
         ):
         headers = {
             "Content-Type": "application/json",
             "Authorization": authorization
         }
+
         super().__init__(base_url=base_url, headers=headers)
 
         self.accounts = AccountsMethod(api=self)
