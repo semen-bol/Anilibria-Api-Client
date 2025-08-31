@@ -44,11 +44,6 @@ class AsyncBaseAPI:
             self.session = None
             self._own_session = False
     
-    def set_session(self, session: aiohttp.ClientSession):
-        """Установить внешнюю сессию"""
-        self.session = session
-        self._own_session = False
-    
     async def _get_session(self) -> aiohttp.ClientSession:
         """Получить сессию, создавая новую если нужно"""
         if self.session is None:
@@ -68,7 +63,6 @@ class AsyncBaseAPI:
         if not params:
             return ""
         
-        # Фильтруем None значения
         filtered_params = {k: v for k, v in params.items() if v is not None}
         if not filtered_params:
             return ""

@@ -46,9 +46,11 @@ class SortType(Enum):
     YEAR_ASC = "YEAR_ASC"
 
 class PublishStatusesType(Enum):
+    """Статус аниме (онгоинг)"""
     IS_ONGOING = "IS_ONGOING"
     IS_NOT_ONGOING = "IS_NOT_ONGOING"
 
 class ProductionStatusesType(Enum):
+    """Статус аниме (в озвучке)"""
     IS_IN_PRODUCTION = "IS_IN_PRODUCTION"
     IS_NOT_IN_PRODUCTION = "IS_NOT_IN_PRODUCTION"

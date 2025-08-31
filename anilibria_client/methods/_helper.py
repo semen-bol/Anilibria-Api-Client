@@ -1,6 +1,6 @@
 from typing import Dict, Any
 from ..types import AgeRating, SortType, ContentType, Seasons, PublishStatusesType, ProductionStatusesType
-from ..models import *
+from ..models import ReleaseCollection, Release
 
 async def validate_filters(params: Release) -> Dict[str, Any]:
     """
@@ -134,5 +134,85 @@ async def create_filters_from_release(release: Release) -> Dict[str, Any]:
     # production_statuses
     if release.production_statuses is not None:
         filters["production_statuses"] = [p.value for p in release.production_statuses]
+    
+    return {"f": filters}
+
+async def validate_collection(params: ReleaseCollection) -> Dict[str, Any]:
+    """
+    Валидация параметров фильтров для ReleaseCollection в формате f["название_переменной"]
+    
+    Args:
+        params: Объект ReleaseCollection с параметрами фильтрации
+    """
+    filters = {
+        "genres": params.genres,
+        "types": params.types,
+        "years": params.years,
+        "search": params.search,
+        "age_ratings": params.age_ratings
+    }
+    validated_filters = {}
+    
+    # Валидация genres
+    if "genres" in filters and filters["genres"] is not None:
+        if not isinstance(filters["genres"], str):
+            raise ValueError("genres должен быть строкой")
+        validated_filters["f[genres]"] = filters["genres"]
+    
+    # Валидация types (список ContentType)
+    if "types" in filters and filters["types"] is not None:
+        if not isinstance(filters["types"], list) or not all(isinstance(t, ContentType) for t in filters["types"]):
+            raise ValueError("types должен быть списком ContentType")
+        validated_filters["f[types]"] = [t.value for t in filters["types"]]
+    
+    # Валидация years
+    if "years" in filters and filters["years"] is not None:
+        if not isinstance(filters["years"], str):
+            raise ValueError("years должен быть строкой")
+        validated_filters["f[years]"] = filters["years"]
+    
+    # Валидация search
+    if "search" in filters and filters["search"] is not None:
+        if not isinstance(filters["search"], str):
+            raise ValueError("search должен быть строкой")
+        validated_filters["f[search]"] = filters["search"]
+    
+    # Валидация age_ratings (список AgeRating)
+    if "age_ratings" in filters and filters["age_ratings"] is not None:
+        if not isinstance(filters["age_ratings"], list) or not all(isinstance(a, AgeRating) for a in filters["age_ratings"]):
+            raise ValueError("age_ratings должен быть списком AgeRating")
+        validated_filters["f[age_ratings]"] = [a.value for a in filters["age_ratings"]]
+    
+    return validated_filters
+
+
+async def validated_json_collection(release: ReleaseCollection) -> Dict[str, Any]:
+    """
+    Создает фильтры в формате API из объекта ReleaseCollection
+    
+    Args:
+        release: Объект ReleaseCollection с параметрами фильтрации
+    """
+    filters = {}
+    
+    # genres
+    if release.genres is not None:
+        filters["genres"] = release.genres
+    
+    # types
+    if release.types is not None:
+        filters["types"] = [t.value for t in release.types]
+    
+    # years
+    if release.years is not None:
+        filters["years"] = release.years
+    
+    # search
+    if release.search is not None:
+        filters["search"] = release.search
+    
+    # age_ratings
+    if release.age_ratings is not None:
+        filters["age_ratings"] = [a.value for a in release.age_ratings]
     
     return {"f": filters}

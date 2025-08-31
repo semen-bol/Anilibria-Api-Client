@@ -3,7 +3,7 @@ import unittest
 from anilibria_client import AsyncAnilibriaAPI
 from anilibria_client.exceptions import AnilibriaException
 from anilibria_client.types import CollectionType, ContentType, AgeRating
-from anilibria_client.models import TimeCode
+from anilibria_client.models import TimeCode, ReleaseCollection
 from unittest import IsolatedAsyncioTestCase
 from pprint import pprint
 from datetime import datetime, timezone
@@ -32,7 +32,7 @@ class Test(IsolatedAsyncioTestCase):
         token = await help.auth(api_without_auth=api_without_auth)
 
         api_auth = AsyncAnilibriaAPI(authorization=f"Bearer {token}")
-        data = await api_auth.accounts.users_me_profile()
+        """data = await api_auth.accounts.users_me_profile()
 
         timecodes_list = [
             TimeCode(time=123, is_watched=True, release_episode_id="68d4d5c5-e3d5-419f-a21c-c511b6b251f5"),
@@ -55,26 +55,35 @@ class Test(IsolatedAsyncioTestCase):
         genres = await api_auth.accounts.users_me_collections_references_genres()
         types = await api_auth.accounts.users_me_collections_references_types()
         years = await api_auth.accounts.users_me_collections_references_years()
-        ids = await api_auth.accounts.users_me_collections_ids()
+        ids = await api_auth.accounts.users_me_collections_ids()"""
         releases = await api_auth.accounts.users_me_collections_releases_post(
-            type_of_collection=CollectionType.PLANNED, 
-            page=1, 
-            limit=10, 
-            include="id,name.main,genres.name"
+            release_collection=ReleaseCollection(
+                type_of_collection=CollectionType.PLANNED,
+                page=1,
+                limit=10,
+                genres="14,29",
+                types=[ContentType.MOVIE],
+                years="2017",
+                search="Мастера Меча Онлайн: Порядковый ранг",
+                age_ratings=[AgeRating.R16_PLUS],
+                include="id,name.main,genres.name"
+            )
         )
-        releases_get = await api_auth.accounts.users_me_collections_releases_get(
-            type_of_collection=CollectionType.PLANNED,
-            page=1,
-            limit=10,
-            genres="14,29",
-            types=[ContentType.MOVIE],
-            years="2017",
-            search="Мастера Меча Онлайн: Порядковый ранг",
-            age_ratings=[AgeRating.R16_PLUS],
-            include="id,name.main,genres.name"
-        )
+        """releases_get = await api_auth.accounts.users_me_collections_releases_get(
+            release_collection=ReleaseCollection(
+                type_of_collection=CollectionType.PLANNED,
+                page=1,
+                limit=10,
+                genres="14,29",
+                types=[ContentType.MOVIE],
+                years="2017",
+                search="Мастера Меча Онлайн: Порядковый ранг",
+                age_ratings=[AgeRating.R16_PLUS],
+                include="id,name.main,genres.name"
+            )
+        )"""
 
-        pprint(object=(data, releases_get))
+        pprint(object=(releases))
         
 
 if __name__ == "__main__":
