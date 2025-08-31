@@ -43,3 +43,67 @@ class AnimeMethod(BaseMethod):
         final_body = {**body, **filters}
 
         return await self._api.post("/anime/catalog/releases", json_data=final_body)
+    
+    async def catalog_references_age_ratings(
+            self
+    ):
+        """
+        Возвращает список возможных возрастных рейтингов в каталоге
+        """
+        return await self._api.get("/anime/catalog/references/age-ratings")
+    
+    async def catalog_references_genres(
+            self
+    ):
+        """
+        Возвращает список всех жанров в каталоге
+        """
+        return await self._api.get("/anime/catalog/references/genres")
+    
+    async def catalog_references_production_statuses(
+            self
+    ):
+        """
+        Возвращает список возможных статусов озвучки релиза в каталоге
+        """
+        return await self._api.get("/anime/catalog/references/production-statuses")
+    
+    async def catalog_references_publish_statuses(
+            self
+    ):
+        """
+        Возвращает список возможных статусов выхода релиза в каталоге
+        """
+        return await self._api.get("/anime/catalog/references/publish-statuses")
+    
+    async def catalog_references_seasons(
+            self
+    ):
+        """
+        Возвращает список возможных сезонов релизов в каталоге
+        """
+        return await self._api.get("/anime/catalog/references/seasons")
+    
+    async def catalog_references_sorting(
+            self
+    ):
+        """
+        Возвращает список возможных типов сортировок в каталоге
+        """
+        return await self._api.get("/anime/catalog/references/sorting")
+    
+    async def catalog_references_types(
+            self
+    ):
+        """
+        Возвращает список возможных типов релизов в каталоге
+        """
+        return await self._api.get("/anime/catalog/references/types")
+    
+    async def catalog_references_years(
+            self
+    ):
+        """
+        Возвращает список годов в каталоге
+        """
+        return await self._api.get("/anime/catalog/references/years")
