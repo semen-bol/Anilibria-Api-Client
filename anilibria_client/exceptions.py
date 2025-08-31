@@ -3,3 +3,6 @@ class AnilibriaException(Exception):
 
 class AnilibriaValidationException(AnilibriaException):
     pass
+
+class AnilibriaAuthorizationException(AnilibriaException):
+    pass
