@@ -1,6 +1,7 @@
 import unittest
 
-from anilibria_client import AsyncAnilibriaAPI, AnilibriaException, AnilibriaAuthorizationException
+from anilibria_client import AsyncAnilibriaAPI
+from anilibria_client.exceptions import AnilibriaException
 from unittest import IsolatedAsyncioTestCase
 from pprint import pprint
 
@@ -26,7 +27,7 @@ class Test(IsolatedAsyncioTestCase):
 
         try: 
             data_ = await api_without_auth.accounts.users_me_profile()
-        except AnilibriaAuthorizationException:
+        except AnilibriaException:
             data_ = "Ничего нет"
 
         help = Help()

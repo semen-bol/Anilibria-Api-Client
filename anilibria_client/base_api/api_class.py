@@ -1,11 +1,9 @@
 import aiohttp
+
 from typing import Dict, Any, Optional, Union
 from urllib.parse import urlencode, urljoin, quote
+from ..exceptions import AnilibriaValidationException, AnilibriaException
 
-from .exceptions import AnilibriaValidationException, AnilibriaException, AnilibriaAuthorizationException
-
-# https://github.com/semen-bol/API-Class 
-# Используется основа от AsyncBaseAPI изменённая под Anilibria...
 
 class AsyncBaseAPI:
     """
@@ -151,13 +149,7 @@ class AsyncBaseAPI:
                     if error_data.get("errors"):
                         raise AnilibriaValidationException(error_data)
                     else:
-                        raise AnilibriaValidationException({"error": "Ошибка валидации входных параметров"})
-                elif response.status == 401:
-                    raise AnilibriaAuthorizationException({"error": "Пользователь не авторизован"})
-                elif response.status == 403:
-                    raise AnilibriaAuthorizationException({"error": "Необходимо авторизоваться"})
-                elif response.status == 404:
-                    raise AnilibriaAuthorizationException({"error": "Пользователь не авторизован"})
+                        raise AnilibriaValidationException({"error": "Ошибка валидации входных параметров"})    
 
                 response.raise_for_status()
                 

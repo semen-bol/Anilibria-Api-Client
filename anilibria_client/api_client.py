@@ -1,5 +1,4 @@
-from .api_class import AsyncBaseAPI
-import aiohttp
+from .base_api.api_class import AsyncBaseAPI
 from typing import Optional, Dict, Any, Optional, Union
 
 from .methods import (
