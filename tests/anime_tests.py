@@ -4,13 +4,33 @@ from anilibria_client import AsyncAnilibriaAPI
 from anilibria_client.types import SortType, ProductionStatusesType, PublishStatusesType, ContentType
 from anilibria_client.models import Release
 from anilibria_client.exceptions import AnilibriaException
+from anilibria_client.helper import async_ffmpeg_download
 from unittest import IsolatedAsyncioTestCase
 from pprint import pprint
 
 
+class Help:
+    async def auth(self, api_without_auth: AsyncAnilibriaAPI):
+        try:
+            login = str(input("Введите логин: "))
+            password = str(input("Введите пароль: "))
+            
+            res = await api_without_auth.accounts.users_auth_login(login=login, password=password)
+
+            return res.get("token")
+        except AnilibriaException as e:
+            print("Введены неправильные данные, попробуйте еще раз!")
+
+            return await self.auth(api_without_auth=api_without_auth)
+
 class Test(IsolatedAsyncioTestCase):
     async def test(self):
         api = AsyncAnilibriaAPI()
+
+        help = Help()
+        token = await help.auth(api_without_auth=api)
+
+        api_auth = AsyncAnilibriaAPI(authorization=f"Bearer {token}")
 
         try:
             """result = await api.anime.catalog_releases_get(
@@ -56,11 +76,23 @@ class Test(IsolatedAsyncioTestCase):
             """sr = await api.anime.genres_random(limit=1)
             sr2 = await api.anime.genres_genreId_releases(sr[0].get("id"))"""
 
+            """alls = await api.anime.releases_latest(1)
+            rnd = await api.anime.releases_random(1)
+            recm = await api.anime.releases_recommended(1)
+            list = await api.anime.releases_list(ids=[9951, 9433, 5692], aliases=["darling-in-the-franxx"])"""
+            #srh = await api.anime.releases_idOrAlias(idOrAlias="darling-in-the-franxx")
+            """r = await api.anime.releases_idOrAlias_members(idOrAlias="darling-in-the-franxx")
+            fr = await api_auth.anime.releases_idOrAlias_episodes_timecodes(idOrAlias="darling-in-the-franxx")"""
+
+            fr = await api_auth.anime.releases_episodes_releaseEpisodeId(releaseEpisodeId="9f557020-0a14-4d0f-ab33-5a5e3a2e6c79", include="release.episodes.hls_720,release.episodes.hls_420,release.episodes.hls_1080")
+            pr = await async_ffmpeg_download(url=fr.get("release").get("episodes")[0].get("hls_720"), output_path="./video.mp4")
+
         except AnilibriaException as e:
             raise e
 
         pprint(object=(
-            "here your test"
+            fr,
+            pr
         ))
 
 if __name__ == "__main__":

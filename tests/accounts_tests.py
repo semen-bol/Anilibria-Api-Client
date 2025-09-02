@@ -27,10 +27,12 @@ class Test(IsolatedAsyncioTestCase):
     async def test(self):
         api_without_auth = AsyncAnilibriaAPI()
 
-        help = Help()
+        result = await api_without_auth.accounts.otp_get("123")
+
+        """help = Help()
         token = await help.auth(api_without_auth=api_without_auth)
 
-        api_auth = AsyncAnilibriaAPI(authorization=f"Bearer {token}")
+        api_auth = AsyncAnilibriaAPI(authorization=f"Bearer {token}")"""
         """data = await api_auth.accounts.users_me_profile()
 
         timecodes_list = [
@@ -55,7 +57,7 @@ class Test(IsolatedAsyncioTestCase):
         types = await api_auth.accounts.users_me_collections_references_types()
         years = await api_auth.accounts.users_me_collections_references_years()
         ids = await api_auth.accounts.users_me_collections_ids()"""
-        releases = await api_auth.accounts.users_me_collections_releases_post(
+        """releases = await api_auth.accounts.users_me_collections_releases_post(
             release_collection=ReleaseCollection(
                 type_of_collection=CollectionType.PLANNED,
                 page=1,
@@ -67,7 +69,7 @@ class Test(IsolatedAsyncioTestCase):
                 age_ratings=[AgeRating.R16_PLUS],
                 include="id,name.main,genres.name"
             )
-        )
+        )"""
         """releases_get = await api_auth.accounts.users_me_collections_releases_get(
             release_collection=ReleaseCollection(
                 type_of_collection=CollectionType.PLANNED,
@@ -82,7 +84,7 @@ class Test(IsolatedAsyncioTestCase):
             )
         )"""
 
-        pprint(object=(releases))
+        pprint(object=(result))
         
 
 if __name__ == "__main__":
