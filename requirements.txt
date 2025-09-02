@@ -1,2 +1,4 @@
 aiohttp==3.12.15
 pydantic==2.11.7
+m3u8-To-MP4==0.1.11
+ffmpeg-python==0.2.0

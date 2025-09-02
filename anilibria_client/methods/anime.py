@@ -1,7 +1,7 @@
 from ._libria import BaseMethod
 from ._helper import validate_filters, create_filters_from_release
 from ..models import Release
-from typing import Optional
+from typing import Optional, List
 
 
 class AnimeMethod(BaseMethod):
@@ -283,3 +283,192 @@ class AnimeMethod(BaseMethod):
 
         endpoint = self._api.build_endpoint_with_params("/anime/genres/{genreId}/releases", genreId=genreId)
         return await self._api.get(endpoint, params=params)
+    
+    async def releases_latest(
+            self,
+            limit: Optional[int] = None,
+            include: Optional[str] = None,
+            exclude: Optional[str]  = None
+    ):
+        """
+        Возвращает данные по последним релизам
+
+        Args:
+            limit: Количество последних релизов в выдаче
+            include: Поля для включения
+            exclude: Поля для исключения
+        """
+        params = {
+            "limit": limit,
+            "include": include,
+            "exclude": exclude
+        }
+
+        return await self._api.get("/anime/releases/latest", params=params)
+    
+    async def releases_random(
+            self,
+            limit: Optional[int] = None,
+            include: Optional[str] = None,
+            exclude: Optional[str]  = None
+    ):
+        """
+        Возвращает данные по случайным релизам
+
+        Args:
+            limit: Количество случайных релизов
+            include: Поля для включения
+            exclude: Поля для исключения
+        """
+        params = {
+            "limit": limit,
+            "include": include,
+            "exclude": exclude
+        }
+
+        return await self._api.get("/anime/releases/random", params=params)
+    
+    async def releases_recommended(
+            self,
+            limit: Optional[int] = None,
+            release_id: Optional[int] = None,
+            include: Optional[str] = None,
+            exclude: Optional[str]  = None
+    ):
+        """
+        Возвращает данные по рекомендованным релизам
+
+        Args:
+            limit: Количество рекомендованных релизов
+            release_id: Идентификатор релиза, для которого рекомендуем
+            include: Поля для включения
+            exclude: Поля для исключения
+        """
+        params = {
+            "limit": limit,
+            "release_id": release_id,
+            "include": include,
+            "exclude": exclude
+        }
+
+        return await self._api.get("/anime/releases/recommended", params=params)
+    
+    async def releases_list(
+            self,
+            ids: List[int],
+            aliases: List[str],
+            page: Optional[int] = None,
+            limit: Optional[int] = None,
+            include: Optional[str] = None,
+            exclude: Optional[str]  = None
+    ):
+        """
+        Возвращает данные по списку релизов
+
+        Args:
+            ids: Список ID релизов Обязательно
+            aliases: Список alias релизов Обязательно
+            page: Номер страницы
+            limit: Лимит на страницу
+            include: Поля для включения
+            exclude: Поля для исключения
+        """
+        params = {
+            "ids": ids,
+            "aliases": aliases,
+            "page": page,
+            "limit": limit,
+            "include": include,
+            "exclude": exclude
+        }
+
+        return await self._api.get("/anime/releases/list", params=params)
+    
+    async def releases_idOrAlias(
+            self,
+            idOrAlias: str,
+            include: Optional[str] = None,
+            exclude: Optional[str]  = None
+    ):
+        """
+        Возвращает данные по релизу
+
+        Args:
+            idOrAlias: id или alias релиза Обязательно
+            include: Поля для включения
+            exclude: Поля для исключения
+        """
+        params = {
+            "include": include,
+            "exclude": exclude
+        }
+
+        endpoint = self._api.build_endpoint_with_params("/anime/releases/{idOrAlias}", idOrAlias=idOrAlias)
+        return await self._api.get(endpoint, params)
+    
+    async def releases_idOrAlias_members(
+            self,
+            idOrAlias: str,
+            include: Optional[str] = None,
+            exclude: Optional[str]  = None
+    ):
+        """
+        Возвращает данные по участникам релиза
+
+        Args:
+            idOrAlias: id или alias релиза Обязательно
+            include: Поля для включения
+            exclude: Поля для исключения
+        """
+        params = {
+            "include": include,
+            "exclude": exclude
+        }
+
+        endpoint = self._api.build_endpoint_with_params("/anime/releases/{idOrAlias}/members", idOrAlias=idOrAlias)
+        return await self._api.get(endpoint, params)
+    
+    async def releases_idOrAlias_episodes_timecodes(
+            self,
+            idOrAlias: str,
+            include: Optional[str] = None,
+            exclude: Optional[str]  = None
+    ):
+        """
+        Возвращает данные по всем существующим таймкодам просмотра эпизодов релиза. Имеет 1-2-x минутный кэш.
+
+        Args:
+            idOrAlias: id или alias релиза Обязательно
+            include: Поля для включения
+            exclude: Поля для исключения
+        """
+        params = {
+            "include": include,
+            "exclude": exclude
+        }
+
+        endpoint = self._api.build_endpoint_with_params("/anime/releases/{idOrAlias}/episodes/timecodes", idOrAlias=idOrAlias)
+        return await self._api.get(endpoint, params)
+
+    # /anime/releases/episodes/{releaseEpisodeId}
+    async def releases_episodes_releaseEpisodeId(
+            self,
+            releaseEpisodeId: str,
+            include: Optional[str] = None,
+            exclude: Optional[str]  = None
+    ):
+        """
+        Возвращает данные по эпизоду
+
+        Args:
+            releaseEpisodeId: Идентификатор эпизода Обязательно
+            include: Поля для включения
+            exclude: Поля для исключения
+        """
+        params = {
+            "include": include,
+            "exclude": exclude
+        }
+
+        endpoint = self._api.build_endpoint_with_params("/anime/releases/episodes/{releaseEpisodeId}", releaseEpisodeId=releaseEpisodeId)
+        return await self._api.get(endpoint, params)

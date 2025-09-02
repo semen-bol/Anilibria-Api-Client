@@ -1,7 +1,7 @@
 from ._libria import BaseMethod
 from ..models import TimeCode, ReleaseCollection
 from ._helper import validate_collection, validated_json_collection
-from typing import Optional, List
+from typing import Optional, List, Dict
 
 class AccountsMethod(BaseMethod):
     async def otp_get(
@@ -19,6 +19,7 @@ class AccountsMethod(BaseMethod):
         }
 
         return await self._api.post("/accounts/otp/get", json_data=data)
+    
     async def otp_accept(
             self, 
             code: int        
@@ -35,7 +36,7 @@ class AccountsMethod(BaseMethod):
 
         return await self._api.post("/accounts/otp/accept", json_data=data)
     
-    async def otp_accept(
+    async def otp_login(
             self, 
             code: int,
             device_id: str
@@ -48,7 +49,8 @@ class AccountsMethod(BaseMethod):
         """
 
         data = {
-            'code': code
+            'code': code,
+            'device_id': device_id
         }
 
         return await self._api.post("/accounts/otp/login", json_data=data)
