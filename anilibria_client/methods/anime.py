@@ -450,7 +450,6 @@ class AnimeMethod(BaseMethod):
         endpoint = self._api.build_endpoint_with_params("/anime/releases/{idOrAlias}/episodes/timecodes", idOrAlias=idOrAlias)
         return await self._api.get(endpoint, params)
 
-    # /anime/releases/episodes/{releaseEpisodeId}
     async def releases_episodes_releaseEpisodeId(
             self,
             releaseEpisodeId: str,
