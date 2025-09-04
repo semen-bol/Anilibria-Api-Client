@@ -85,7 +85,11 @@ class Test(IsolatedAsyncioTestCase):
             fr = await api_auth.anime.releases_idOrAlias_episodes_timecodes(idOrAlias="darling-in-the-franxx")"""
 
             fr = await api.anime.releases_episodes_releaseEpisodeId(releaseEpisodeId="9f557020-0a14-4d0f-ab33-5a5e3a2e6c79", include="release.episodes.hls_720,release.episodes.hls_420,release.episodes.hls_1080")
-            pr = await async_download(url=fr.get("release").get("episodes")[0].get("hls_720"))
+            i = 1
+
+            for a in fr.get("release").get("episodes"):
+                await async_download(url=a.get("hls_1080"), filename=f"{i}.mp4")
+                i += 1
 
             """res2 = await api.anime.schedule_week(include="release.id")"""
 
@@ -93,8 +97,7 @@ class Test(IsolatedAsyncioTestCase):
             raise e
 
         pprint(object=(
-            fr,
-            pr
+            fr      
         ))
 
 if __name__ == "__main__":
