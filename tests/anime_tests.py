@@ -4,7 +4,7 @@ from anilibria_client import AsyncAnilibriaAPI
 from anilibria_client.types import SortType, ProductionStatusesType, PublishStatusesType, ContentType
 from anilibria_client.models import Release
 from anilibria_client.exceptions import AnilibriaException
-from anilibria_client.helper import async_ffmpeg_download
+from anilibria_client.helper import async_ffmpeg_download, async_download
 from unittest import IsolatedAsyncioTestCase
 from pprint import pprint
 
@@ -27,10 +27,10 @@ class Test(IsolatedAsyncioTestCase):
     async def test(self):
         api = AsyncAnilibriaAPI()
 
-        help = Help()
+        """help = Help()
         token = await help.auth(api_without_auth=api)
 
-        api_auth = AsyncAnilibriaAPI(authorization=f"Bearer {token}")
+        api_auth = AsyncAnilibriaAPI(authorization=f"Bearer {token}")"""
 
         try:
             """result = await api.anime.catalog_releases_get(
@@ -84,8 +84,10 @@ class Test(IsolatedAsyncioTestCase):
             """r = await api.anime.releases_idOrAlias_members(idOrAlias="darling-in-the-franxx")
             fr = await api_auth.anime.releases_idOrAlias_episodes_timecodes(idOrAlias="darling-in-the-franxx")"""
 
-            fr = await api_auth.anime.releases_episodes_releaseEpisodeId(releaseEpisodeId="9f557020-0a14-4d0f-ab33-5a5e3a2e6c79", include="release.episodes.hls_720,release.episodes.hls_420,release.episodes.hls_1080")
-            pr = await async_ffmpeg_download(url=fr.get("release").get("episodes")[0].get("hls_720"), output_path="./video.mp4")
+            fr = await api.anime.releases_episodes_releaseEpisodeId(releaseEpisodeId="9f557020-0a14-4d0f-ab33-5a5e3a2e6c79", include="release.episodes.hls_720,release.episodes.hls_420,release.episodes.hls_1080")
+            pr = await async_download(url=fr.get("release").get("episodes")[0].get("hls_720"))
+
+            """res2 = await api.anime.schedule_week(include="release.id")"""
 
         except AnilibriaException as e:
             raise e

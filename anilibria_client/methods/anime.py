@@ -494,5 +494,43 @@ class AnimeMethod(BaseMethod):
         endpoint = self._api.build_endpoint_with_params("/anime/releases/episodes/{releaseEpisodeId}/timecode", releaseEpisodeId=releaseEpisodeId)
         return await self._api.get(endpoint, params)
     
-    # ! https://anilibria.top/api/docs/v1#/%D0%90%D0%BD%D0%B8%D0%BC%D0%B5.%D0%A0%D0%B5%D0%BB%D0%B8%D0%B7%D1%8B.%D0%A0%D0%B0%D1%81%D0%BF%D0%B8%D1%81%D0%B0%D0%BD%D0%B8%D0%B5%D0%A0%D0%B5%D0%BB%D0%B8%D0%B7%D0%BE%D0%B2
+    async def schedule_now(
+            self,
+            include: Optional[str] = None,
+            exclude: Optional[str]  = None
+    ):
+        """
+        Возвращает список релизов в расписании на текущую дату
+
+        Args:
+            include: Поля для включения
+            exclude: Поля для исключения
+        """
+        params = {
+            "include": include,
+            "exclude": exclude
+        }
+
+        return await self._api.get("/anime/schedule/now", params=params)
+    
+    async def schedule_week(
+            self,
+            include: Optional[str] = None,
+            exclude: Optional[str]  = None
+    ):
+        """
+        Возвращает список релизов в расписании на текущую неделю
+
+        Args:
+            include: Поля для включения
+            exclude: Поля для исключения
+        """
+        params = {
+            "include": include,
+            "exclude": exclude
+        }
+
+        return await self._api.get("/anime/schedule/week", params=params)
+    
+    
     # ! https://anilibria.top/api/docs/v1#/%D0%90%D0%BD%D0%B8%D0%BC%D0%B5.%D0%A2%D0%BE%D1%80%D1%80%D0%B5%D0%BD%D1%82%D1%8B
