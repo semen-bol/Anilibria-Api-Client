@@ -1,5 +1,6 @@
 import m3u8_To_MP4
 import os # only for path / make dir
+import aiofiles
 
 from .api_client import AsyncAnilibriaAPI
 from .exceptions import AnilibriaException
@@ -74,3 +75,19 @@ async def auth(api: AsyncAnilibriaAPI, login: str, password: str):
         return AsyncAnilibriaAPI(authorization=f"Bearer {res.get("token")}")
     except AnilibriaException as e:
         raise AnilibriaException("Auth error!")
+    
+async def download_torrent_file(torrent_bytes: bytes, filename: str):
+    """
+    Асинхронно сохраняет .torrent файл
+    
+    Args:
+        torrent_bytes: бинарные данные torrent-файла
+        filename: имя файла
+    """
+    if not filename.endswith('.torrent'):
+        filename += '.torrent'
+    
+    async with aiofiles.open(filename, 'wb') as f:
+        await f.write(torrent_bytes)
+    
+    return True

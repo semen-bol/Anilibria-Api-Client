@@ -4,7 +4,7 @@ from anilibria_client import AsyncAnilibriaAPI
 from anilibria_client.types import SortType, ProductionStatusesType, PublishStatusesType, ContentType
 from anilibria_client.models import Release
 from anilibria_client.exceptions import AnilibriaException
-from anilibria_client.helper import async_ffmpeg_download, async_download, auth
+from anilibria_client.helper import async_ffmpeg_download, async_download, auth, download_torrent_file
 from unittest import IsolatedAsyncioTestCase
 from pprint import pprint
 
@@ -28,8 +28,6 @@ class Test(IsolatedAsyncioTestCase):
         api = AsyncAnilibriaAPI()
 
         api = await auth(api, "", "")
-
-        res = await api.accounts.users_me_profile()
 
         """help = Help()
         token = await help.auth(api_without_auth=api)
@@ -94,15 +92,25 @@ class Test(IsolatedAsyncioTestCase):
             for a in fr.get("release").get("episodes"):
                 await async_download(url=a.get("hls_1080"), filename=f"{i}.mp4")
                 i += 1"""
+            
+            """torrents = await api.anime.torrents()
+            torrent = await api.anime.torrents_hashOrId(torrents.get("data")[0].get("hash")) # Первый торрент, далее работает по нему
+
+            torrent_hash = await api.anime.torrents_hashOrId_file(torrent.get("hash"))
+            download_status = await download_torrent_file(torrent_hash, torrent.get("label"))"""
 
             """res2 = await api.anime.schedule_week(include="release.id")"""
+            res = await api.anime.torrents_release_releaseId(9489)
 
         except AnilibriaException as e:
             raise e
 
-        pprint(object=(
-            res      
-        ))
+        """pprint(object=(
+            #res,
+            ress
+        ))"""
+        """print(f"download status: {"готово" if download_status else "неудачно"}")"""
+        print(res)
 
 if __name__ == "__main__":
     unittest.main()

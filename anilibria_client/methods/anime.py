@@ -533,4 +533,97 @@ class AnimeMethod(BaseMethod):
         return await self._api.get("/anime/schedule/week", params=params)
     
     
+    async def torrents(
+            self,
+            page: Optional[int] = None,
+            limit: Optional[int] = None,
+            include: Optional[str] = None,
+            exclude: Optional[str]  = None
+    ):
+        """
+        Возвращает данные по последним торрентам
+
+        Args:
+            page: Номер страницы
+            limit: Лимит на страницу
+            include: Поля для включения
+            exclude: Поля для исключения
+        """
+        params = {
+            "page": page,
+            "limit": limit,
+            "include": include,
+            "exclude": exclude
+        }
+
+        return await self._api.get("/anime/torrents", params=params)
+    
+    async def torrents_hashOrId(
+            self,
+            hashOrId: str,
+            include: Optional[str] = None,
+            exclude: Optional[str]  = None
+    ):
+        """
+        Возвращает данные по последним торрентам
+
+        Args:
+            hashOrId: Обязательно Хэш или ID торрента
+            include: Поля для включения
+            exclude: Поля для исключения
+        """
+        params = {
+            "include": include,
+            "exclude": exclude
+        }
+
+        endpoint = self._api.build_endpoint_with_params("/anime/torrents/{hashOrId}", hashOrId=hashOrId)
+        return await self._api.get(endpoint, params)
+        
+    async def torrents_hashOrId_file(
+            self,
+            hashOrId: str,
+            pk: Optional[str] = None
+    ):
+        """
+        Возвращает данные по последним торрентам
+
+        Args:
+            hashOrId: Обязательно Хэш или ID торрента
+            pk: passkey пользователя. Оставьте пустым для собственного pk (если аутентифицирован)
+        """
+        params = {
+            "pk": pk
+        }
+        headers = {
+            "Content-Type": "application/x-bittorrent; utf-8",
+            "Accept": "application/x-bittorrent"
+        }
+
+        endpoint = self._api.build_endpoint_with_params("/anime/torrents/{hashOrId}/file", hashOrId=hashOrId)
+        return await self._api.get(endpoint, params, headers)
+    
+    async def torrents_release_releaseId(
+            self,
+            releaseId: int,
+            include: Optional[str] = None,
+            exclude: Optional[str]  = None
+    ):
+        """
+        Возвращает данные по последним торрентам
+
+        Args:
+            releaseId: Обязательно ID релиза
+            include: Поля для включения
+            exclude: Поля для исключения
+        """
+        params = {
+            "include": include,
+            "exclude": exclude
+        }
+
+        endpoint = self._api.build_endpoint_with_params("/anime/torrents/release/{releaseId}", releaseId=releaseId)
+        return await self._api.get(endpoint, params)
+    
     # ! https://anilibria.top/api/docs/v1#/%D0%90%D0%BD%D0%B8%D0%BC%D0%B5.%D0%A2%D0%BE%D1%80%D1%80%D0%B5%D0%BD%D1%82%D1%8B
+    # ? rss only (latest 2 methods)
