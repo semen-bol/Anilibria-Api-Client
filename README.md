@@ -8,7 +8,9 @@
 > [!CAUTION]  
 > **It is not an official wrapper.** [Official AniLibria's Swagger](https://anilibria.top/api/docs/v1)
 
-Anilibria-API-Client - this a async/sync client to work with Anilibria API, use a aiohttp. Full writed at python
+Anilibria-API-Client - this a async client to work with Anilibria API, use a aiohttp. Full writed at python
+
+U can download anime too fast!
 
 ## Installing
 Tested at python 3.13
@@ -22,6 +24,7 @@ from anilibria_client import AsyncAnilibriaAPI # Client
 from anilibria_client.exceptions import AnilibriaException, AnilibriaValidationException # Errors
 from anilibria_client.types import * # Types for some methods
 from anilibria_client.models import * # Models for some methods
+from anilibria_client.helper import * # Download anime, save torrents files and more
 
 async def main():
     async with AsyncAnilibriaAPI() as api: # async with

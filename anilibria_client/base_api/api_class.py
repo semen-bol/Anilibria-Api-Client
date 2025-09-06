@@ -156,6 +156,8 @@ class AsyncBaseAPI:
                 content_type = response.headers.get('Content-Type', '')
                 if 'application/json' in content_type:
                     return await response.json()
+                elif 'application/x-bittorrent' in content_type:
+                    return await response.read()
                 
                 return await response.text()
                 

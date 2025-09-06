@@ -4,7 +4,7 @@ from anilibria_client import AsyncAnilibriaAPI
 from anilibria_client.types import SortType, ProductionStatusesType, PublishStatusesType, ContentType
 from anilibria_client.models import Release
 from anilibria_client.exceptions import AnilibriaException
-from anilibria_client.helper import async_ffmpeg_download
+from anilibria_client.helper import async_ffmpeg_download, async_download, auth, download_torrent_file
 from unittest import IsolatedAsyncioTestCase
 from pprint import pprint
 
@@ -27,10 +27,12 @@ class Test(IsolatedAsyncioTestCase):
     async def test(self):
         api = AsyncAnilibriaAPI()
 
-        help = Help()
+        api = await auth(api, "", "")
+
+        """help = Help()
         token = await help.auth(api_without_auth=api)
 
-        api_auth = AsyncAnilibriaAPI(authorization=f"Bearer {token}")
+        api_auth = AsyncAnilibriaAPI(authorization=f"Bearer {token}")"""
 
         try:
             """result = await api.anime.catalog_releases_get(
@@ -84,16 +86,31 @@ class Test(IsolatedAsyncioTestCase):
             """r = await api.anime.releases_idOrAlias_members(idOrAlias="darling-in-the-franxx")
             fr = await api_auth.anime.releases_idOrAlias_episodes_timecodes(idOrAlias="darling-in-the-franxx")"""
 
-            fr = await api_auth.anime.releases_episodes_releaseEpisodeId(releaseEpisodeId="9f557020-0a14-4d0f-ab33-5a5e3a2e6c79", include="release.episodes.hls_720,release.episodes.hls_420,release.episodes.hls_1080")
-            pr = await async_ffmpeg_download(url=fr.get("release").get("episodes")[0].get("hls_720"), output_path="./video.mp4")
+            """fr = await api.anime.releases_episodes_releaseEpisodeId(releaseEpisodeId="9f557020-0a14-4d0f-ab33-5a5e3a2e6c79", include="release.episodes.hls_720,release.episodes.hls_420,release.episodes.hls_1080")
+            i = 1
+
+            for a in fr.get("release").get("episodes"):
+                await async_download(url=a.get("hls_1080"), filename=f"{i}.mp4")
+                i += 1"""
+            
+            """torrents = await api.anime.torrents()
+            torrent = await api.anime.torrents_hashOrId(torrents.get("data")[0].get("hash")) # Первый торрент, далее работает по нему
+
+            torrent_hash = await api.anime.torrents_hashOrId_file(torrent.get("hash"))
+            download_status = await download_torrent_file(torrent_hash, torrent.get("label"))"""
+
+            """res2 = await api.anime.schedule_week(include="release.id")"""
+            res = await api.anime.torrents_release_releaseId(9489)
 
         except AnilibriaException as e:
             raise e
 
-        pprint(object=(
-            fr,
-            pr
-        ))
+        """pprint(object=(
+            #res,
+            ress
+        ))"""
+        """print(f"download status: {"готово" if download_status else "неудачно"}")"""
+        print(res)
 
 if __name__ == "__main__":
     unittest.main()
