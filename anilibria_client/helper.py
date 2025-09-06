@@ -1,6 +1,9 @@
 import m3u8_To_MP4
 import os # only for path / make dir
 
+from .api_client import AsyncAnilibriaAPI
+from .exceptions import AnilibriaException
+
 from ffmpeg.asyncio import FFmpeg
 
 async def async_download(url: str, output_path: str = None, filename: str = "output.mp4"):
@@ -63,3 +66,11 @@ async def async_ffmpeg_download(url: str, output_path: str) -> bool:
         return "Неверная ссылка."
     except Exception as e:
         return "Произошла непредвиденная ошибка при загрузке видео: " + str(e)
+
+async def auth(api: AsyncAnilibriaAPI, login: str, password: str):
+    try:
+        res = await api.accounts.users_auth_login(login=login, password=password)
+
+        return AsyncAnilibriaAPI(authorization=f"Bearer {res.get("token")}")
+    except AnilibriaException as e:
+        raise AnilibriaException("Auth error!")
