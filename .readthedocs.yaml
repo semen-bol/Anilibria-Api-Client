@@ -4,6 +4,11 @@ build:
   os: ubuntu-22.04
   tools:
     python: "3.11"
+  jobs:
+    pre_build:
+      - cd docs
+    build:
+      - sphinx-build -b html source $READTHEDOCS_OUTPUT/html
 
 sphinx:
   configuration: docs/source/conf.py
@@ -14,10 +19,3 @@ python:
       path: .
       extra_requirements:
         - docs
-
-build:
-  jobs:
-    pre_build:
-      - cd docs
-    build:
-      - sphinx-build -b html source $READTHEDOCS_OUTPUT/html
