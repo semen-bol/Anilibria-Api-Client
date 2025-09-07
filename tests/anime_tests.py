@@ -100,7 +100,7 @@ class Test(IsolatedAsyncioTestCase):
             download_status = await download_torrent_file(torrent_hash, torrent.get("label"))"""
 
             """res2 = await api.anime.schedule_week(include="release.id")"""
-            res = await api.anime.torrents_release_releaseId(9489)
+            """res = await api.anime.torrents_rss_release_releaseId(9995)"""
 
         except AnilibriaException as e:
             raise e
@@ -110,7 +110,7 @@ class Test(IsolatedAsyncioTestCase):
             ress
         ))"""
         """print(f"download status: {"готово" if download_status else "неудачно"}")"""
-        print(res)
+        """print(res)"""
 
 if __name__ == "__main__":
     unittest.main()

@@ -625,5 +625,46 @@ class AnimeMethod(BaseMethod):
         endpoint = self._api.build_endpoint_with_params("/anime/torrents/release/{releaseId}", releaseId=releaseId)
         return await self._api.get(endpoint, params)
     
-    # ! https://anilibria.top/api/docs/v1#/%D0%90%D0%BD%D0%B8%D0%BC%D0%B5.%D0%A2%D0%BE%D1%80%D1%80%D0%B5%D0%BD%D1%82%D1%8B
-    # ? rss only (latest 2 methods)
+    async def torrents_rss(
+            self,
+            limit: Optional[int] = None,
+            pk: Optional[str]  = None
+    ):
+        """
+        Возвращает данные по последним торрентам в виде XML документа
+
+        Args:
+            limit: Количество торрентов в выдаче. По умолчанию 10
+            pk: passkey пользователя. Оставьте пустым для собственного pk (если аутентифицирован)
+        """
+        params = {
+            "limit": limit,
+            "pk": pk
+        }
+        headers = {
+            "Content-Type": "application/xml",
+        }
+
+        return await self._api.get("/anime/torrents/rss", params=params, headers=headers)
+    
+    async def torrents_rss_release_releaseId(
+            self,
+            releaseId: int,
+            pk: Optional[str]  = None
+    ):
+        """
+        Возвращает данные по торрентам релиза в виде RSS ленты (xml)
+
+        Args:
+            releaseId: Обязательно ID релиза
+            pk: passkey пользователя. Оставьте пустым для собственного pk (если аутентифицирован)
+        """
+        params = {
+            "pk": pk
+        }
+        headers = {
+            "Content-Type": "application/xml",
+        }
+        
+        endpoint = self._api.build_endpoint_with_params("/anime/torrents/rss/release/{releaseId}", releaseId=releaseId)
+        return await self._api.get(endpoint=endpoint, params=params, headers=headers)
