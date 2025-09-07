@@ -1,10 +1,10 @@
 import unittest
 
-from anilibria_client import AsyncAnilibriaAPI
-from anilibria_client.types import SortType, ProductionStatusesType, PublishStatusesType, ContentType
-from anilibria_client.models import Release
-from anilibria_client.exceptions import AnilibriaException
-from anilibria_client.helper import async_ffmpeg_download, async_download, auth, download_torrent_file
+from anilibria_api_client import AsyncAnilibriaAPI
+from anilibria_api_client.types import SortType, ProductionStatusesType, PublishStatusesType, ContentType
+from anilibria_api_client.models import Release
+from anilibria_api_client.exceptions import AnilibriaException
+from anilibria_api_client.helper import async_ffmpeg_download, async_download, auth, download_torrent_file
 from unittest import IsolatedAsyncioTestCase
 from pprint import pprint
 
