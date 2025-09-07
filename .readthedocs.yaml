@@ -14,3 +14,10 @@ python:
       path: .
       extra_requirements:
         - docs
+
+build:
+  jobs:
+    pre_build:
+      - cd docs
+    build:
+      - sphinx-build -b html source $READTHEDOCS_OUTPUT/html
