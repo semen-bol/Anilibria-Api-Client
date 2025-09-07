@@ -13,23 +13,16 @@
 #
 import os
 import sys
+import datetime
 
 sys.path.insert(0, os.path.abspath(".."))
 
-import tomli
-
 # -- Project information -----------------------------------------------------
-
-with open("../pyproject.toml", "rb") as f:
-    pyproject = tomli.load(f)
-
-_version: str = pyproject["tool"]["poetry"]["version"]
-
-project = "anilibria.py"
-copyright = "2023, Damego"
-author = "Damego"
-release = _version
-version = ".".join(_version.split(".", 2)[:2])
+project = "anilibria-api-client"
+copyright = f"{datetime.datetime.now().year}, semen-bol"
+author = "semen-bol"
+release = "0.1.5"
+version = "0.1"
 
 # -- General configuration ---------------------------------------------------
 
