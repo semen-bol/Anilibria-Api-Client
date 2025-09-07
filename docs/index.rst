@@ -1,4 +1,4 @@
-anilibria-api-client Documentation
+AniLibria-Api-Client Documentation
 ==================================
 
 Python async API wrapper for AniLibria Swagger
@@ -20,7 +20,7 @@ Python async API wrapper for AniLibria Swagger
    getting_started
    examples
 
-Quick Example
+Пример
 -------------
 
 .. code-block:: python
@@ -37,10 +37,3 @@ Quick Example
 
       api = AsyncAnilibriaAPI() # like js support
       await api.teams.users(include="nickname")
-
-Indices and Tables
-==================
-
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`

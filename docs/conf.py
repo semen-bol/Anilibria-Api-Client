@@ -85,6 +85,18 @@ html_theme = "furo"
 # relative to this directory. They are copied after the builtin static files,
 # so a file named "default.css" will overwrite the builtin "default.css".
 html_static_path = ["_static"]
+html_context = {
+    'display_github': True,
+    'github_user': 'semen-bol',
+    'github_repo': 'anilibria-api-client',
+    'github_version': 'main',
+    'conf_py_path': '/docs/',
+    'extra_links': [
+        '<a href="https://github.com/semen-bol/Anilibria-Api-Client" target="_blank">'
+        '<img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white" '
+        'alt="GitHub" /></a>'
+    ],
+}
 
 # Intersphinx
 intersphinx_mapping = {
