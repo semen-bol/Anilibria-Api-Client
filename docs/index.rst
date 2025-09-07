@@ -1,45 +1,44 @@
-.. anilibria-api-client documentation master file
+anilibria-api-client Documentation
+==================================
 
-Welcome to anilibria-api-client's documentation!
-===============================================
+Python async API wrapper for AniLibria Swagger
 
-**anilibria-api-client** - Python async API wrapper for AniLibria Swagger
+.. toctree::
+   :maxdepth: 3
+   :caption: API Reference
+
+   api/models
+   api/types
+   api/api_client
+   api/exceptions
+   api/helper
 
 .. toctree::
    :maxdepth: 2
-   :caption: Contents:
+   :caption: Guides
 
-   api
-   modules
+   getting_started
+   examples
 
-Features
---------
-
-- Async/await support with aiohttp
-- Pydantic models for type safety
-- Easy to use API methods
-- File downloading capabilities
-
-Quick Start
------------
+Quick Example
+-------------
 
 .. code-block:: python
 
-   from anilibria_api_client import AniLibriaClient
+   from anilibria_client import AsyncAnilibriaAPI # Client
+   from anilibria_client.exceptions import AnilibriaException, AnilibriaValidationException # Errors
+   from anilibria_client.types import * # Types for some methods
+   from anilibria_client.models import * # Models for some methods
+   from anilibria_client.helper import * # Download anime, save torrents files and more
 
    async def main():
-       async with AniLibriaClient() as client:
-           titles = await client.get_updates()
-           print(titles)
+      async with AsyncAnilibriaAPI() as api: # async with
+         await api.teams.users(include="nickname")
 
-Installation
-------------
+      api = AsyncAnilibriaAPI() # like js support
+      await api.teams.users(include="nickname")
 
-.. code-block:: bash
-
-   pip install anilibria-api-client
-
-Indices and tables
+Indices and Tables
 ==================
 
 * :ref:`genindex`
