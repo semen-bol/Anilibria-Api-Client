@@ -27,7 +27,7 @@ Issues = "https://github.com/semen-bol/Anilibria-Api-Client/issues"
 [tool.setuptools.packages.find]
 where = ["."]
 include = ["anilibria_api_client*"]
-exclude = ["tests*", "dist*", "build*"] 
+exclude = ["tests*", "dist*", "build*", "docs*"] 
 
 [project.optional-dependencies]
 docs = [
