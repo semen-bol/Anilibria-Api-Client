@@ -80,12 +80,7 @@ autodoc_default_options = {"member-order": "bysource", "private-members": True}
 # a list of builtin themes.
 #
 html_theme = "furo"
-
-# Add any paths that contain custom static files (such as style sheets) here,
-# relative to this directory. They are copied after the builtin static files,
-# so a file named "default.css" will overwrite the builtin "default.css".
-html_static_path = ["_static"]
-html_context = {
+html_theme_options = {
     'display_github': True,
     'github_user': 'semen-bol',
     'github_repo': 'anilibria-api-client',
@@ -97,6 +92,11 @@ html_context = {
         'alt="GitHub" /></a>'
     ],
 }
+
+# Add any paths that contain custom static files (such as style sheets) here,
+# relative to this directory. They are copied after the builtin static files,
+# so a file named "default.css" will overwrite the builtin "default.css".
+html_static_path = ["_static"]
 
 # Intersphinx
 intersphinx_mapping = {
