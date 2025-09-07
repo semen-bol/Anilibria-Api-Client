@@ -33,7 +33,7 @@ autodoc_default_options = {
     "special-members": "__init__",
 }
 
-html_theme = "sphinx_rtd_theme"
+html_theme = "furo"
 html_static_path = ["_static"]
 html_css_files = ["custom.css"]
 
