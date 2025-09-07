@@ -93,16 +93,6 @@ html_theme_options = {
             "class": "",
         },
         {
-            "name": "PyPI",
-            "url": "https://pypi.org/project/anilibria-api-client/",
-            "html": """
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                    <path d="M12 0C5.372 0 0 5.372 0 12s5.372 12 12 12 12-5.372 12-12S18.628 0 12 0zm0 22C6.486 22 2 17.514 2 12S6.486 2 12 2s10 4.486 10 10-4.486 10-10 10zm-1-17h2v2h-2V5zm0 4h2v8h-2V9z"/>
-                </svg>
-            """,
-            "class": "footer-icon",
-        },
-        {
             "name": "Read the Docs",
             "url": "https://anilibria-api-client.readthedocs.io/",
             "html": """
