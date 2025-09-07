@@ -1,6 +1,6 @@
 # Anilibria-Api-Client
 
-[![pypi](https://img.shields.io/badge/anilibria_api_client_on_PyPi-blue)]()
+[![pypi](https://img.shields.io/badge/anilibria_api_client_on_PyPi-blue)](https://pypi.org/project/anilibria-api-client)
 ![version](https://img.shields.io/badge/Version-0.1.4-blue)
 ![licence](https://img.shields.io/badge/License-MIT-green)
 ![python](https://img.shields.io/badge/Python-3.13%2B-blue)
