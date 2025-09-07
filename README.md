@@ -1,7 +1,7 @@
 # Anilibria-Api-Client
 
 [![pypi](https://img.shields.io/badge/anilibria_api_client_on_PyPi-blue)](https://pypi.org/project/anilibria-api-client)
-![version](https://img.shields.io/badge/Version-0.1.5-blue)
+![version](https://img.shields.io/badge/Version-0.1.6-blue)
 ![licence](https://img.shields.io/badge/License-MIT-green)
 ![python](https://img.shields.io/badge/Python-3.13%2B-blue)
 
@@ -33,7 +33,7 @@ async def main():
 ```
 
 ## Documentation 📃
-Docs..
+[Docs](https://anilibria-api-client.readthedocs.io/latest/)
 ## Issues/Contributing
 ### Issues
 Report for any issues [here](https://github.com/semen-bol/Anilibria-Api-Client/issues)
