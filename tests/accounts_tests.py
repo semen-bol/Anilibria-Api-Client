@@ -1,9 +1,9 @@
 import unittest
 
-from anilibria_client import AsyncAnilibriaAPI
-from anilibria_client.exceptions import AnilibriaException
-from anilibria_client.types import CollectionType, ContentType, AgeRating
-from anilibria_client.models import TimeCode, ReleaseCollection
+from anilibria_api_client import AsyncAnilibriaAPI
+from anilibria_api_client.exceptions import AnilibriaException
+from anilibria_api_client.types import CollectionType, ContentType, AgeRating
+from anilibria_api_client.models import TimeCode, ReleaseCollection
 from unittest import IsolatedAsyncioTestCase
 from pprint import pprint
 from datetime import datetime, timezone

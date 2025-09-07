@@ -1,7 +1,7 @@
 # Anilibria-Api-Client
 
-[![pypi](https://img.shields.io/badge/anilibria_api_client_on_PyPi-blue)]()
-![version](https://img.shields.io/badge/Version-0.1.1-blue)
+[![pypi](https://img.shields.io/badge/anilibria_api_client_on_PyPi-blue)](https://pypi.org/project/anilibria-api-client)
+![version](https://img.shields.io/badge/Version-0.1.4-blue)
 ![licence](https://img.shields.io/badge/License-MIT-green)
 ![python](https://img.shields.io/badge/Python-3.13%2B-blue)
 
@@ -9,8 +9,6 @@
 > **It is not an official wrapper.** [Official AniLibria's Swagger](https://anilibria.top/api/docs/v1)
 
 Anilibria-API-Client - this a async client to work with Anilibria API, use a aiohttp. Full writed at python
-
-U can download anime too fast!
 
 ## Installing
 Tested at python 3.13

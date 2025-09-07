@@ -1,7 +1,7 @@
 import unittest
 
-from anilibria_client import AsyncAnilibriaAPI
-from anilibria_client.exceptions import AnilibriaException
+from anilibria_api_client import AsyncAnilibriaAPI
+from anilibria_api_client.exceptions import AnilibriaException
 from unittest import IsolatedAsyncioTestCase
 from pprint import pprint
 
