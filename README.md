@@ -10,8 +10,6 @@
 
 Anilibria-API-Client - this a async client to work with Anilibria API, use a aiohttp. Full writed at python
 
-U can download anime too fast!
-
 ## Installing
 Tested at python 3.13
 ### pip
