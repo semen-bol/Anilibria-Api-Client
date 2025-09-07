@@ -81,16 +81,9 @@ autodoc_default_options = {"member-order": "bysource", "private-members": True}
 #
 html_theme = "furo"
 html_theme_options = {
-    'display_github': True,
-    'github_user': 'semen-bol',
-    'github_repo': 'anilibria-api-client',
-    'github_version': 'main',
-    'conf_py_path': '/docs/',
-    'extra_links': [
-        '<a href="https://github.com/semen-bol/Anilibria-Api-Client" target="_blank">'
-        '<img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white" '
-        'alt="GitHub" /></a>'
-    ],
+    "source_repository": "https://github.com/semen-bol/Anilibria-Api-Client/",
+    "source_branch": "main",
+    "source_directory": "docs/",
 }
 
 # Add any paths that contain custom static files (such as style sheets) here,
