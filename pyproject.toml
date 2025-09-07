@@ -4,14 +4,14 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "anilibria-api-client"
-version = "0.1.5"
+version = "0.1.6"
 description = "Python async API wrapper for AniLibria Swagger"
 authors = [
     {name = "semen-bol", email = "syoma.bolotov@bk.ru"}
 ]
 license = {text = "MIT"}
 readme = "README.md"
-requires-python = ">=3.11"
+requires-python = ">=3.13"
 dependencies = [
     "aiohttp==3.12.15",
     "aiofiles==24.1.0",
