@@ -34,4 +34,5 @@ docs = [
     "sphinx>=7.0.0",
     "sphinx-rtd-theme>=1.0.0",
     "sphinx-autodoc-typehints>=1.0.0",
+    "sphinx_design>=0.6.1",
 ]
