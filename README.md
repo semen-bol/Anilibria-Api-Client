@@ -33,7 +33,7 @@ async def main():
 ```
 
 ## Documentation 📃
-Docs..
+[Docs](https://anilibria-api-client.readthedocs.io/latest/)
 ## Issues/Contributing
 ### Issues
 Report for any issues [here](https://github.com/semen-bol/Anilibria-Api-Client/issues)
