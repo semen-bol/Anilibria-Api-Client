@@ -21,7 +21,7 @@ sys.path.insert(0, os.path.abspath(".."))
 project = "anilibria-api-client"
 copyright = f"{datetime.datetime.now().year}, semen-bol"
 author = "semen-bol"
-release = "0.1.5"
+release = "0.1.7"
 version = "0.1"
 
 # -- General configuration ---------------------------------------------------
