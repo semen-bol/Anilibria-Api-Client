@@ -10,6 +10,7 @@ from .methods import (
     TeamsMethod
 )
 
+
 class AsyncAnilibriaAPI(AsyncBaseAPI):
     """
     Асинхронный клиент для работы с AnilibriaAPI

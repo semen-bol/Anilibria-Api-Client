@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "anilibria-api-client"
-version = "0.1.6"
+version = "0.1.7"
 description = "Python async API wrapper for AniLibria Swagger"
 authors = [
     {name = "semen-bol", email = "syoma.bolotov@bk.ru"}
@@ -22,6 +22,7 @@ dependencies = [
 
 [project.urls]
 Homepage = "https://github.com/semen-bol/Anilibria-Api-Client"
+Docs = "https://anilibria-api-client.readthedocs.io/latest/"
 Issues = "https://github.com/semen-bol/Anilibria-Api-Client/issues"
 
 [tool.setuptools.packages.find]

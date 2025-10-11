@@ -17,11 +17,48 @@ import datetime
 
 sys.path.insert(0, os.path.abspath(".."))
 
+extensions = [
+    'sphinx.ext.autodoc',
+    'sphinx.ext.viewcode',
+    'sphinx.ext.napoleon'
+]
+
+autodoc_default_options = {
+    'members': True,
+    'undoc-members': True,
+    'private-members': False,
+    'special-members': '__init__',
+    'inherited-members': True,
+    'show-inheritance': True
+}
+
+autodoc_mock_imports = [
+    'aiohttp', 
+    'websockets',
+    'ffmpeg',
+    'ffmpeg.asyncio',
+    'typing',
+    'anilibria_api_client.base_api',
+    'anilibria_api_client.methods',
+    'anilibria_api_client.methods.accounts',
+    'anilibria_api_client.methods.ads', 
+    'anilibria_api_client.methods.anime',
+    'anilibria_api_client.methods.app',
+    'anilibria_api_client.methods.media',
+    'anilibria_api_client.methods.teams'
+]
+
+autodoc_member_order = 'groupwise'
+autodoc_inherit_docstrings = True
+napoleon_use_ivar = True
+napoleon_google_docstring = True
+napoleon_numpy_docstring = False
+
 # -- Project information -----------------------------------------------------
 project = "anilibria-api-client"
 copyright = f"{datetime.datetime.now().year}, semen-bol"
 author = "semen-bol"
-release = "0.1.5"
+release = "0.1.7"
 version = "0.1"
 
 # -- General configuration ---------------------------------------------------

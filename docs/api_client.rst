@@ -1,0 +1,10 @@
+API Client 
+==================================
+
+API Module use in Module
+
+.. automodule:: anilibria_api_client.api_client
+   :members:
+   :undoc-members:
+   :special-members: __init__
+   :show-inheritance:

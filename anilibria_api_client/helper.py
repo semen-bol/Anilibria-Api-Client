@@ -1,5 +1,5 @@
 import m3u8_To_MP4
-import os # only for path / make dir
+import os          # Path / Makedir
 import aiofiles
 
 from .api_client import AsyncAnilibriaAPI
@@ -7,14 +7,30 @@ from .exceptions import AnilibriaException
 
 from ffmpeg.asyncio import FFmpeg
 
+
+async def auth(api: AsyncAnilibriaAPI, login: str, password: str) -> AsyncAnilibriaAPI:
+    """
+    Используется для простой авторизации без использования методов одной строчкой
+
+    :param api: AsyncAnilibriaAPI 
+    :param login: Логин от ЛК Anilibria
+    :param password: Пароль от ЛК Anilibria
+    :return: AsyncAnilibriaAPI
+    """
+    try:
+        res = await api.accounts.users_auth_login(login=login, password=password)
+
+        return AsyncAnilibriaAPI(authorization=f"Bearer {res.get("token")}")
+    except AnilibriaException as e:
+        raise AnilibriaException("Auth error!")
+
 async def async_download(url: str, output_path: str = None, filename: str = "output.mp4"):
     """
     Позволяет скачивать серию через URL (https://cache-rfn.libria.fun/videos/media/)
     ffmpeg required
 
-    Args:
-        url: Ссылка на m3u8 плейлист
-        output_path: Полный путь к выходному файлу (включая имя файла и расширение .mp4)
+    :param url: Ссылка на m3u8 плейлист
+    :param output_path: Полный путь к выходному файлу (включая имя файла и расширение .mp4)
     """
     if output_path is None:
         mp4_file_dir = os.getcwd()
@@ -41,9 +57,9 @@ async def async_ffmpeg_download(url: str, output_path: str) -> bool:
 
     Может быть медленным, используйте хороший интернет
     
-    Args:
-        url: Ссылка
-        output_path: Путь для сохранения MP4 файла
+    :param url: Ссылка
+    :param output_path: Путь для сохранения MP4 файла
+    :return: bool
     """
     try:
         ffmpeg = (
@@ -62,27 +78,18 @@ async def async_ffmpeg_download(url: str, output_path: str) -> bool:
         return True
         
     except KeyError:
-            return "Запрашиваемое видео недоступно."
+        return "Запрашиваемое видео недоступно."
     except ValueError:
         return "Неверная ссылка."
     except Exception as e:
         return "Произошла непредвиденная ошибка при загрузке видео: " + str(e)
-
-async def auth(api: AsyncAnilibriaAPI, login: str, password: str):
-    try:
-        res = await api.accounts.users_auth_login(login=login, password=password)
-
-        return AsyncAnilibriaAPI(authorization=f"Bearer {res.get("token")}")
-    except AnilibriaException as e:
-        raise AnilibriaException("Auth error!")
     
 async def download_torrent_file(torrent_bytes: bytes, filename: str):
     """
     Асинхронно сохраняет .torrent файл
     
-    Args:
-        torrent_bytes: бинарные данные torrent-файла
-        filename: имя файла
+    :param torrent_bytes: бинарные данные torrent-файла
+    :param filename: имя файла
     """
     if not filename.endswith('.torrent'):
         filename += '.torrent'
