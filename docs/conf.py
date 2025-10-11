@@ -117,3 +117,10 @@ html_static_path = ["_static"]
 intersphinx_mapping = {
     "py": ("https://docs.python.org/3", None),
 }
+
+try:
+    from anilibria_api_client.api_client import AsyncAnilibriaAPI
+    print("✅ Модуль успешно импортирован")
+except ImportError as e:
+    print(f"❌ Ошибка импорта: {e}")
+    print("Пути Python:", sys.path)
