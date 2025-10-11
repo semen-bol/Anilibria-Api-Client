@@ -3,7 +3,7 @@ AniLibria-Api-Client Documentation
 
 Python async API wrapper for AniLibria Swagger
 
-Пример
+Example
 -------------
 
 .. code-block:: python
