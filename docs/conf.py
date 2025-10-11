@@ -49,6 +49,10 @@ autodoc_mock_imports = [
 ]
 
 autodoc_member_order = 'groupwise'
+autodoc_inherit_docstrings = True
+napoleon_use_ivar = True
+napoleon_google_docstring = True
+napoleon_numpy_docstring = False
 
 # -- Project information -----------------------------------------------------
 project = "anilibria-api-client"
