@@ -3,23 +3,6 @@ AniLibria-Api-Client Documentation
 
 Python async API wrapper for AniLibria Swagger
 
-.. toctree::
-   :maxdepth: 3
-   :caption: API Reference
-
-   api/models
-   api/types
-   api/api_client
-   api/exceptions
-   api/helper
-
-.. toctree::
-   :maxdepth: 2
-   :caption: Guides
-
-   getting_started
-   examples
-
 Пример
 -------------
 
@@ -37,3 +20,9 @@ Python async API wrapper for AniLibria Swagger
 
       api = AsyncAnilibriaAPI() # like js support
       await api.teams.users(include="nickname")
+
+.. toctree::
+   :maxdepth: 4
+   :caption: Страницы:
+
+   pages.rst
