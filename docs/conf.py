@@ -35,6 +35,8 @@ autodoc_default_options = {
 autodoc_mock_imports = [
     'aiohttp', 
     'websockets',
+    'ffmpeg',
+    'ffmpeg.asyncio',
     'typing',
     'anilibria_api_client.base_api',
     'anilibria_api_client.methods',
