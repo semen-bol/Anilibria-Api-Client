@@ -23,6 +23,6 @@ Python async API wrapper for AniLibria Swagger
 
 .. toctree::
    :maxdepth: 4
-   :caption: Страницы:
+   :caption: Pages:
 
    pages.rst

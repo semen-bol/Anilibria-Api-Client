@@ -1,14 +1,14 @@
-Документация АПИ
+API Docs
 ================
 
 .. toctree::
     :maxdepth: 2
-    :caption: Клиент
+    :caption: Client
 
     api_client.rst
 
 .. toctree::
     :maxdepth: 2
-    :caption: Методы
+    :caption: Methods
 
     methods.rst

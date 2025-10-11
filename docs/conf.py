@@ -48,6 +48,7 @@ autodoc_mock_imports = [
     'anilibria_api_client.methods.teams'
 ]
 
+autodoc_member_order = 'groupwise'
 
 # -- Project information -----------------------------------------------------
 project = "anilibria-api-client"
