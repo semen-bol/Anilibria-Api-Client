@@ -7,9 +7,3 @@ API Module use in Module
    :members:
    :undoc-members:
    :exclude-members: _on_playlist_update
-
-.. toctree::
-   :maxdepth: 4
-   :caption: Страницы:
-
-   pages.rst
