@@ -18,7 +18,7 @@ Example
       async with AsyncAnilibriaAPI() as api: # async with
          await api.teams.users(include="nickname")
 
-      api = AsyncAnilibriaAPI() # like js support
+      api = AsyncAnilibriaAPI()
       await api.teams.users(include="nickname")
 
 .. toctree::
