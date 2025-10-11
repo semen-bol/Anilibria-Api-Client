@@ -1,11 +1,9 @@
-.. module:: anilibria_api_client.api_client
-
 API Client 
 ==================================
 
 API Module use in Module
 
-.. automodule:: AsyncAnilibriaAPI
+.. automodule:: anilibria_api_client.api_client
    :members:
    :undoc-members:
    :exclude-members: _on_playlist_update
