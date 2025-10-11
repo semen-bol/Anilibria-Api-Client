@@ -1,6 +1,14 @@
 from typing import Dict, Any
-from ..types import AgeRating, SortType, ContentType, Seasons, PublishStatusesType, ProductionStatusesType
+from ..types import (
+    AgeRating, 
+    SortType, 
+    ContentType, 
+    Seasons, 
+    PublishStatusesType, 
+    ProductionStatusesType
+)
 from ..models import ReleaseCollection, Release
+
 
 async def validate_filters(params: Release) -> Dict[str, Any]:
     """
