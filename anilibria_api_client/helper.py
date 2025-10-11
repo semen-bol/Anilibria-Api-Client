@@ -88,9 +88,8 @@ async def download_torrent_file(torrent_bytes: bytes, filename: str):
     """
     Асинхронно сохраняет .torrent файл
     
-    Args:
-        torrent_bytes: бинарные данные torrent-файла
-        filename: имя файла
+    :param torrent_bytes: бинарные данные torrent-файла
+    :param filename: имя файла
     """
     if not filename.endswith('.torrent'):
         filename += '.torrent'
