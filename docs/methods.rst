@@ -6,7 +6,7 @@ API Methods available with client
 Accounts Methods
 --------------
 
-.. automodule:: anilibria_api_client.methods.accounts
+.. autoclass:: anilibria_api_client.methods.accounts.AccountsMethod
    :members:
    :undoc-members:
    :show-inheritance:
@@ -14,7 +14,7 @@ Accounts Methods
 Ads Methods
 ---------
 
-.. automodule:: anilibria_api_client.methods.ads
+.. autoclass:: anilibria_api_client.methods.ads.AdsMethod
    :members:
    :undoc-members:
    :show-inheritance:
@@ -22,7 +22,7 @@ Ads Methods
 Anime Methods
 -----------
 
-.. automodule:: anilibria_api_client.methods.anime
+.. autoclass:: anilibria_api_client.methods.anime.AnimeMethod
    :members:
    :undoc-members:
    :show-inheritance:
@@ -30,7 +30,7 @@ Anime Methods
 App Methods
 ---------
 
-.. automodule:: anilibria_api_client.methods.app
+.. autoclass:: anilibria_api_client.methods.app.AppMethod
    :members:
    :undoc-members:
    :show-inheritance:
@@ -38,7 +38,7 @@ App Methods
 Media Methods
 -----------
 
-.. automodule:: anilibria_api_client.methods.media
+.. autoclass:: anilibria_api_client.methods.media.MediaMethod
    :members:
    :undoc-members:
    :show-inheritance:
@@ -46,7 +46,7 @@ Media Methods
 Teams Methods
 -----------
 
-.. automodule:: anilibria_api_client.methods.teams
+.. autoclass:: anilibria_api_client.methods.teams.TeamsMethod
    :members:
    :undoc-members:
    :show-inheritance:
