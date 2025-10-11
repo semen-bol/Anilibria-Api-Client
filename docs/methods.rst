@@ -9,6 +9,9 @@ Accounts Methods
 .. autoclass:: anilibria_api_client.methods.accounts.AccountsMethod
    :members:
    :undoc-members:
+   :private-members:
+   :special-members: __init__
+   :inherited-members:
    :show-inheritance:
 
 Ads Methods
