@@ -8,14 +8,14 @@ from .exceptions import AnilibriaException
 from ffmpeg.asyncio import FFmpeg
 
 
-async def auth(api: AsyncAnilibriaAPI, login: str, password: str):
+async def auth(api: AsyncAnilibriaAPI, login: str, password: str) -> AsyncAnilibriaAPI:
     """
     Используется для простой авторизации без использования методов одной строчкой
 
-    Args:
-        api: AsyncAnilibriaAPI 
-        login: Логин от ЛК Anilibria
-        password: Пароль от ЛК Anilibria
+    :param api: AsyncAnilibriaAPI 
+    :param login: Логин от ЛК Anilibria
+    :param password: Пароль от ЛК Anilibria
+    :return: AsyncAnilibriaAPI
     """
     try:
         res = await api.accounts.users_auth_login(login=login, password=password)
@@ -29,9 +29,8 @@ async def async_download(url: str, output_path: str = None, filename: str = "out
     Позволяет скачивать серию через URL (https://cache-rfn.libria.fun/videos/media/)
     ffmpeg required
 
-    Args:
-        url: Ссылка на m3u8 плейлист
-        output_path: Полный путь к выходному файлу (включая имя файла и расширение .mp4)
+    :param url: Ссылка на m3u8 плейлист
+    :param output_path: Полный путь к выходному файлу (включая имя файла и расширение .mp4)
     """
     if output_path is None:
         mp4_file_dir = os.getcwd()
@@ -58,9 +57,9 @@ async def async_ffmpeg_download(url: str, output_path: str) -> bool:
 
     Может быть медленным, используйте хороший интернет
     
-    Args:
-        url: Ссылка
-        output_path: Путь для сохранения MP4 файла
+    :param url: Ссылка
+    :param output_path: Путь для сохранения MP4 файла
+    :return: bool
     """
     try:
         ffmpeg = (
