@@ -40,6 +40,7 @@ autodoc_mock_imports = [
     'typing',
     'anilibria_api_client.base_api',
     'anilibria_api_client.methods',
+    'anilibria_api_client.methods._helper',
     'anilibria_api_client.methods._libria',
     'anilibria_api_client.methods.accounts',
     'anilibria_api_client.methods.ads', 
