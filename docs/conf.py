@@ -39,6 +39,7 @@ autodoc_mock_imports = [
     'ffmpeg.asyncio',
     'typing',
     'anilibria_api_client.base_api',
+    'anilibria_api_client.api_client',
     'anilibria_api_client.methods',
     'anilibria_api_client.methods.accounts',
     'anilibria_api_client.methods.ads', 
@@ -58,7 +59,7 @@ napoleon_numpy_docstring = False
 project = "anilibria-api-client"
 copyright = f"{datetime.datetime.now().year}, semen-bol"
 author = "semen-bol"
-release = "0.1.7"
+release = "0.1.9"
 version = "0.1"
 
 # -- General configuration ---------------------------------------------------

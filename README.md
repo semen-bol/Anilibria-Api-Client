@@ -39,7 +39,7 @@ async def main():
 
 ## Documentation 📃
 
-[Docs](https://anilibria-api-client.readthedocs.io/latest/)
+[Docs](https://anilibria-api-client.readthedocs.io/stable/)
 
 ## Issues/Contributing
 

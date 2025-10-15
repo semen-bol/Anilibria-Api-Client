@@ -14,8 +14,7 @@ async def validate_filters(params: Release) -> Dict[str, Any]:
     """
     Валидация параметров фильтров в формате f["название_переменной"]
     
-    Args:
-        filters: Словарь с параметрами фильтров
+    :param filters: Словарь с параметрами фильтров
     """
     filters = {
         "genres": params.genres,
@@ -97,8 +96,7 @@ async def create_filters_from_release(release: Release) -> Dict[str, Any]:
     """
     Создает фильтры в формате API из объекта Release
     
-    Args:
-        release: Объект Release с параметрами фильтрации
+    :param release: Объект Release с параметрами фильтрации
     """
     filters = {}
     
@@ -149,8 +147,7 @@ async def validate_collection(params: ReleaseCollection) -> Dict[str, Any]:
     """
     Валидация параметров фильтров для ReleaseCollection в формате f["название_переменной"]
     
-    Args:
-        params: Объект ReleaseCollection с параметрами фильтрации
+    :param params: Объект ReleaseCollection с параметрами фильтрации
     """
     filters = {
         "genres": params.genres,
@@ -198,8 +195,7 @@ async def validated_json_collection(release: ReleaseCollection) -> Dict[str, Any
     """
     Создает фильтры в формате API из объекта ReleaseCollection
     
-    Args:
-        release: Объект ReleaseCollection с параметрами фильтрации
+    :param release: Объект ReleaseCollection с параметрами фильтрации
     """
     filters = {}
     
