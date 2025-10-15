@@ -65,7 +65,8 @@ Teams Methods
 
 Helpers used in methods
 --------------
-.. automodule:: anilibria_api_client.methods._helper
+.. autoclass:: anilibria_api_client.methods._helper.BaseMethod
    :members:
    :undoc-members:
+   :special-members: __init__
    :show-inheritance:
