@@ -11,9 +11,8 @@ class MediaMethod(BaseMethod):
         """
         Возвращает список промо-материалов или рекламные кампании в случайном порядке
 
-        Args:
-            include: Поля для включения
-            exclude: Поля для исключения
+        :param include: Поля для включения
+        :param exclude: Поля для исключения
         """
         params = {
             "include": include,
@@ -31,10 +30,9 @@ class MediaMethod(BaseMethod):
         """
         Возвращает список последних видео-роликов
 
-        Args:
-            limit: Лимит возвращаемых полей
-            include: Поля для включения
-            exclude: Поля для исключения
+        :param limit: Лимит возвращаемых полей
+        :param include: Поля для включения
+        :param exclude: Поля для исключения
         """
         params = {
             "limit": limit,

@@ -58,7 +58,7 @@ napoleon_numpy_docstring = False
 project = "anilibria-api-client"
 copyright = f"{datetime.datetime.now().year}, semen-bol"
 author = "semen-bol"
-release = "0.1.7"
+release = "0.1.9"
 version = "0.1"
 
 # -- General configuration ---------------------------------------------------

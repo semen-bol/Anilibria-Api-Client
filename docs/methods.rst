@@ -52,3 +52,11 @@ Teams Methods
    :members:
    :undoc-members:
    :show-inheritance:
+
+Helpers to help methods where its need
+-----------
+
+.. automodule:: anilibria_api_client.methods._helper
+   :members:
+   :undoc-members:
+   :show-inheritance:

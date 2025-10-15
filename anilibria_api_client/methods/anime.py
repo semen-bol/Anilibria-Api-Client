@@ -117,9 +117,8 @@ class AnimeMethod(BaseMethod):
         """
         Возвращает список франшиз
 
-        Args:
-            include: Поля для включения
-            exclude: Поля для исключения
+        :param include: Поля для включения
+        :param exclude: Поля для исключения
         """
         params = {
             "include": include,
@@ -136,10 +135,9 @@ class AnimeMethod(BaseMethod):
         """
         Возвращает данные франшизы по Id
 
-        Args:
-            franchiseId: Обязательно. Id франшизы
-            include: Поля для включения
-            exclude: Поля для исключения
+        :param franchiseId: Обязательно. Id франшизы
+        :param include: Поля для включения
+        :param exclude: Поля для исключения
         """
         params = {
             "include": include,
@@ -158,10 +156,9 @@ class AnimeMethod(BaseMethod):
         """
         Возвращает список случайных франшиз.
 
-        Args:
-            limit: Лимит случайных франшиз
-            include: Поля для включения
-            exclude: Поля для исключения
+        :param limit: Лимит случайных франшиз
+        :param include: Поля для включения
+        :param exclude: Поля для исключения
         """
         params = {
             "limit": limit,
@@ -180,10 +177,9 @@ class AnimeMethod(BaseMethod):
         """
         Возвращает список франшиз, в которых участвует релиз
 
-        Args:
-            releaseId: Обязательно. Id франшизы
-            include: Поля для включения
-            exclude: Поля для исключения
+        :param releaseId: Обязательно. Id франшизы
+        :param include: Поля для включения
+        :param exclude: Поля для исключения
         """
         params = {
             "include": include,
@@ -201,9 +197,8 @@ class AnimeMethod(BaseMethod):
         """
         Возвращает список всех жанров
 
-        Args:
-            include: Поля для включения
-            exclude: Поля для исключения
+        :param include: Поля для включения
+        :param exclude: Поля для исключения
         """
         params = {
             "include": include,
@@ -221,10 +216,9 @@ class AnimeMethod(BaseMethod):
         """
         Возвращает список всех жанров
 
-        Args:
-            genreId: ID жанра, обязательно
-            include: Поля для включения
-            exclude: Поля для исключения
+        :param genreId: ID жанра, обязательно
+        :param include: Поля для включения
+        :param exclude: Поля для исключения
         """
         params = {
             "include": include,
@@ -243,10 +237,9 @@ class AnimeMethod(BaseMethod):
         """
         Возвращает список случайных жанров
 
-        Args:
-            limit: Лимит случайных жанров
-            include: Поля для включения
-            exclude: Поля для исключения
+        :param limit: Лимит случайных жанров
+        :param include: Поля для включения
+        :param exclude: Поля для исключения
         """
         params = {
             "limit": limit,
@@ -267,12 +260,11 @@ class AnimeMethod(BaseMethod):
         """
         Возвращает список всех релизов жанра
 
-        Args:
-            genreId: Обязательно. ID жанра
-            page: Номер страницы
-            limit: Лимит на страницу
-            include: Поля для включения
-            exclude: Поля для исключения
+        :param genreId: Обязательно. ID жанра
+        :param page: Номер страницы
+        :param limit: Лимит на страницу
+        :param include: Поля для включения
+        :param exclude: Поля для исключения
         """
         params = {
             "page": page,
@@ -293,10 +285,9 @@ class AnimeMethod(BaseMethod):
         """
         Возвращает данные по последним релизам
 
-        Args:
-            limit: Количество последних релизов в выдаче
-            include: Поля для включения
-            exclude: Поля для исключения
+        :param limit: Количество последних релизов в выдаче
+        :param include: Поля для включения
+        :param exclude: Поля для исключения
         """
         params = {
             "limit": limit,
@@ -315,10 +306,9 @@ class AnimeMethod(BaseMethod):
         """
         Возвращает данные по случайным релизам
 
-        Args:
-            limit: Количество случайных релизов
-            include: Поля для включения
-            exclude: Поля для исключения
+        :param limit: Количество случайных релизов
+        :param include: Поля для включения
+        :param exclude: Поля для исключения
         """
         params = {
             "limit": limit,
@@ -338,11 +328,10 @@ class AnimeMethod(BaseMethod):
         """
         Возвращает данные по рекомендованным релизам
 
-        Args:
-            limit: Количество рекомендованных релизов
-            release_id: Идентификатор релиза, для которого рекомендуем
-            include: Поля для включения
-            exclude: Поля для исключения
+        :param limit: Количество рекомендованных релизов
+        :param release_id: Идентификатор релиза, для которого рекомендуем
+        :param include: Поля для включения
+        :param exclude: Поля для исключения
         """
         params = {
             "limit": limit,
@@ -365,13 +354,12 @@ class AnimeMethod(BaseMethod):
         """
         Возвращает данные по списку релизов
 
-        Args:
-            ids: Список ID релизов Обязательно
-            aliases: Список alias релизов Обязательно
-            page: Номер страницы
-            limit: Лимит на страницу
-            include: Поля для включения
-            exclude: Поля для исключения
+        :param ids: Список ID релизов Обязательно
+        :param aliases: Список alias релизов Обязательно
+        :param page: Номер страницы
+        :param limit: Лимит на страницу
+        :param include: Поля для включения
+        :param exclude: Поля для исключения
         """
         params = {
             "ids": ids,
@@ -393,10 +381,9 @@ class AnimeMethod(BaseMethod):
         """
         Возвращает данные по релизу
 
-        Args:
-            idOrAlias: id или alias релиза Обязательно
-            include: Поля для включения
-            exclude: Поля для исключения
+        :param idOrAlias: id или alias релиза Обязательно
+        :param include: Поля для включения
+        :param exclude: Поля для исключения
         """
         params = {
             "include": include,
@@ -415,10 +402,9 @@ class AnimeMethod(BaseMethod):
         """
         Возвращает данные по участникам релиза
 
-        Args:
-            idOrAlias: id или alias релиза Обязательно
-            include: Поля для включения
-            exclude: Поля для исключения
+        :param idOrAlias: id или alias релиза Обязательно
+        :param include: Поля для включения
+        :param exclude: Поля для исключения
         """
         params = {
             "include": include,
@@ -437,10 +423,9 @@ class AnimeMethod(BaseMethod):
         """
         Возвращает данные по всем существующим таймкодам просмотра эпизодов релиза. Имеет 1-2-x минутный кэш.
 
-        Args:
-            idOrAlias: id или alias релиза Обязательно
-            include: Поля для включения
-            exclude: Поля для исключения
+        :param idOrAlias: id или alias релиза Обязательно
+        :param include: Поля для включения
+        :param exclude: Поля для исключения
         """
         params = {
             "include": include,
@@ -459,10 +444,9 @@ class AnimeMethod(BaseMethod):
         """
         Возвращает данные по эпизоду
 
-        Args:
-            releaseEpisodeId: Идентификатор эпизода Обязательно
-            include: Поля для включения
-            exclude: Поля для исключения
+        :param releaseEpisodeId: Идентификатор эпизода Обязательно
+        :param include: Поля для включения
+        :param exclude: Поля для исключения
         """
         params = {
             "include": include,
@@ -481,10 +465,9 @@ class AnimeMethod(BaseMethod):
         """
         Возвращает данные по просмотру указанного эпизода авторизованным пользователем. Имеет 1-2-x минутный кэш.
 
-        Args:
-            releaseEpisodeId: Идентификатор эпизода Обязательно
-            include: Поля для включения
-            exclude: Поля для исключения
+        :param releaseEpisodeId: Идентификатор эпизода Обязательно
+        :param include: Поля для включения
+        :param exclude: Поля для исключения
         """
         params = {
             "include": include,
@@ -502,9 +485,8 @@ class AnimeMethod(BaseMethod):
         """
         Возвращает список релизов в расписании на текущую дату
 
-        Args:
-            include: Поля для включения
-            exclude: Поля для исключения
+        :param include: Поля для включения
+        :param exclude: Поля для исключения
         """
         params = {
             "include": include,
@@ -521,9 +503,8 @@ class AnimeMethod(BaseMethod):
         """
         Возвращает список релизов в расписании на текущую неделю
 
-        Args:
-            include: Поля для включения
-            exclude: Поля для исключения
+        :param include: Поля для включения
+        :param exclude: Поля для исключения
         """
         params = {
             "include": include,
@@ -543,11 +524,10 @@ class AnimeMethod(BaseMethod):
         """
         Возвращает данные по последним торрентам
 
-        Args:
-            page: Номер страницы
-            limit: Лимит на страницу
-            include: Поля для включения
-            exclude: Поля для исключения
+        :param page: Номер страницы
+        :param limit: Лимит на страницу
+        :param include: Поля для включения
+        :param exclude: Поля для исключения
         """
         params = {
             "page": page,
@@ -567,10 +547,9 @@ class AnimeMethod(BaseMethod):
         """
         Возвращает данные по последним торрентам
 
-        Args:
-            hashOrId: Обязательно Хэш или ID торрента
-            include: Поля для включения
-            exclude: Поля для исключения
+        :param hashOrId: Обязательно Хэш или ID торрента
+        :param include: Поля для включения
+        :param exclude: Поля для исключения
         """
         params = {
             "include": include,
@@ -588,9 +567,8 @@ class AnimeMethod(BaseMethod):
         """
         Возвращает данные по последним торрентам
 
-        Args:
-            hashOrId: Обязательно Хэш или ID торрента
-            pk: passkey пользователя. Оставьте пустым для собственного pk (если аутентифицирован)
+        :param hashOrId: Обязательно Хэш или ID торрента
+        :param pk: passkey пользователя. Оставьте пустым для собственного pk (если аутентифицирован)
         """
         params = {
             "pk": pk
@@ -612,10 +590,9 @@ class AnimeMethod(BaseMethod):
         """
         Возвращает данные по последним торрентам
 
-        Args:
-            releaseId: Обязательно ID релиза
-            include: Поля для включения
-            exclude: Поля для исключения
+        :param releaseId: Обязательно ID релиза
+        :param include: Поля для включения
+        :param exclude: Поля для исключения
         """
         params = {
             "include": include,
@@ -633,9 +610,8 @@ class AnimeMethod(BaseMethod):
         """
         Возвращает данные по последним торрентам в виде XML документа
 
-        Args:
-            limit: Количество торрентов в выдаче. По умолчанию 10
-            pk: passkey пользователя. Оставьте пустым для собственного pk (если аутентифицирован)
+        :param limit: Количество торрентов в выдаче. По умолчанию 10
+        :param pk: passkey пользователя. Оставьте пустым для собственного pk (если аутентифицирован)
         """
         params = {
             "limit": limit,
@@ -655,9 +631,8 @@ class AnimeMethod(BaseMethod):
         """
         Возвращает данные по торрентам релиза в виде RSS ленты (xml)
 
-        Args:
-            releaseId: Обязательно ID релиза
-            pk: passkey пользователя. Оставьте пустым для собственного pk (если аутентифицирован)
+        :param releaseId: Обязательно ID релиза
+        :param pk: passkey пользователя. Оставьте пустым для собственного pk (если аутентифицирован)
         """
         params = {
             "pk": pk

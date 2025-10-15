@@ -5,8 +5,6 @@ import aiofiles
 from .api_client import AsyncAnilibriaAPI
 from .exceptions import AnilibriaException
 
-from ffmpeg.asyncio import FFmpeg
-
 
 async def auth(api: AsyncAnilibriaAPI, login: str, password: str) -> AsyncAnilibriaAPI:
     """
@@ -50,39 +48,6 @@ async def async_download(url: str, output_path: str = None, filename: str = "out
         mp4_file_dir=mp4_file_dir,
         mp4_file_name=mp4_file_name
     )
-
-async def async_ffmpeg_download(url: str, output_path: str) -> bool:
-    """
-    Скачивание m3u8 через ffmpeg с обходом блокировок (при блокировки основного метода async_download)
-
-    Может быть медленным, используйте хороший интернет
-    
-    :param url: Ссылка
-    :param output_path: Путь для сохранения MP4 файла
-    :return: bool
-    """
-    try:
-        ffmpeg = (
-            FFmpeg()
-                .input(url)
-                .output(output_path, **{
-                    "vcodec": "libx264",
-                    "crf": 27,
-                    "preset": "veryfast",
-                    "c:a": "copy", 
-                    "bsf:a": "aac_adtstoasc"
-                    }
-                )
-        )
-        await ffmpeg.execute()
-        return True
-        
-    except KeyError:
-        return "Запрашиваемое видео недоступно."
-    except ValueError:
-        return "Неверная ссылка."
-    except Exception as e:
-        return "Произошла непредвиденная ошибка при загрузке видео: " + str(e)
     
 async def download_torrent_file(torrent_bytes: bytes, filename: str):
     """

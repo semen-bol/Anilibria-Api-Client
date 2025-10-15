@@ -198,8 +198,7 @@ class AccountsMethod(BaseMethod):
             """
             Возвращает данные по релизам из определенной коллекции авторизованного пользователя
             
-            Args:
-                release_collection: тело ReleaseCollection
+            :param release_collection: тело ReleaseCollection
             """
             params = {
                 'page': release_collection.page,
@@ -221,8 +220,7 @@ class AccountsMethod(BaseMethod):
             """
             Возвращает данные по релизам из определенной коллекции авторизованного пользователя
             
-            Args:
-                release_collection: тело ReleaseCollection
+            :param release_collection: тело ReleaseCollection
             """
             json = {
                 'page': release_collection.page,
@@ -292,11 +290,10 @@ class AccountsMethod(BaseMethod):
         """
         Возвращает историю просмотров эпизодов авторизованного пользователя
 
-        Args:
-            page: Опционально. Номер страницы
-            limit: Опционально. Лимит на страницу
-            include: Опционально. Список включаемых полей. Через запятую или множественные параметры. Поддерживается вложенность через точку.
-            exclude: Опционально. Список исключаемых полей. Через запятую или множественные параметры. Поддерживается вложенность через точку. Приоритет над include
+        :param page: Опционально. Номер страницы
+        :param limit: Опционально. Лимит на страницу
+        :param include: Опционально. Список включаемых полей. Через запятую или множественные параметры. Поддерживается вложенность через точку.
+        :param exclude: Опционально. Список исключаемых полей. Через запятую или множественные параметры. Поддерживается вложенность через точку. Приоритет над include
         """
         params = {
             "page": page,
