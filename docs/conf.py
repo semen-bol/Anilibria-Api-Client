@@ -39,7 +39,6 @@ autodoc_mock_imports = [
     'ffmpeg.asyncio',
     'typing',
     'anilibria_api_client.base_api',
-    'anilibria_api_client.api_client',
     'anilibria_api_client.methods',
     'anilibria_api_client.methods.accounts',
     'anilibria_api_client.methods.ads', 
