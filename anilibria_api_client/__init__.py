@@ -23,7 +23,6 @@ from .exceptions import (
 
 from .helper import (
     async_download,
-    async_ffmpeg_download,
     auth,
     download_torrent_file
 )
