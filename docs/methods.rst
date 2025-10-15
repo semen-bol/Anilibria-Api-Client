@@ -6,11 +6,12 @@ API Methods available with client
 Base Method
 --------------
 
-.. autoclass:: anilibria_api_client.methods._libria
+.. autoclass:: anilibria_api_client.methods._libria.BaseMethod
    :members:
    :undoc-members:
    :private-members:
    :inherited-members:
+   :special-members: __init__
    :show-inheritance:
 
 Accounts Methods
@@ -65,7 +66,7 @@ Teams Methods
 
 Helpers used in methods
 --------------
-.. autoclass:: anilibria_api_client.methods._helper.BaseMethod
+.. automodule:: anilibria_api_client.methods._helper
    :members:
    :undoc-members:
    :special-members: __init__
