@@ -4,7 +4,7 @@ from anilibria_api_client import AsyncAnilibriaAPI
 from anilibria_api_client.types import SortType, ProductionStatusesType, PublishStatusesType, ContentType
 from anilibria_api_client.models import Release
 from anilibria_api_client.exceptions import AnilibriaException
-from anilibria_api_client.helper import async_ffmpeg_download, async_download, auth, download_torrent_file
+from anilibria_api_client.helper import auto_paginate, async_download, auth, download_torrent_file
 from unittest import IsolatedAsyncioTestCase
 from pprint import pprint
 
@@ -27,6 +27,11 @@ class Test(IsolatedAsyncioTestCase):
     async def test(self):
         api = AsyncAnilibriaAPI()
 
+        pages = await auto_paginate(api_function=api.anime.genres_genreId_releases, limit=30, genreId=27)
+
+        pprint(pages)
+        print(len(pages))
+        return
         api = await auth(api, "", "")
 
         """help = Help()

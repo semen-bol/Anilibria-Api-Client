@@ -24,5 +24,6 @@ from .exceptions import (
 from .helper import (
     async_download,
     auth,
-    download_torrent_file
+    download_torrent_file,
+    auto_paginate
 )
