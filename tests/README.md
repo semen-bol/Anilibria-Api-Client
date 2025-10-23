@@ -1,5 +1,11 @@
 # Anilibria-Api-Client (tests)\*
 
+## Try our cli search anime (--name required, other - not required)
+
+```bash
+py -m tests.cli_search_anime --name "Ванпанчмен 3" --login login --password password --limit limit
+```
+
 ## Start test
 
 ```bash

@@ -10,7 +10,7 @@ async def auth(api: AsyncAnilibriaAPI, login: str, password: str) -> AsyncAnilib
     """
     Используется для простой авторизации без использования методов одной строчкой
 
-    :param api: AsyncAnilibriaAPI 
+    :param api: AsyncAnilibriaAPI - Аргументы сохраняются
     :param login: Логин от ЛК Anilibria
     :param password: Пароль от ЛК Anilibria
     :return: AsyncAnilibriaAPI
@@ -18,13 +18,25 @@ async def auth(api: AsyncAnilibriaAPI, login: str, password: str) -> AsyncAnilib
     try:
         res = await api.accounts.users_auth_login(login=login, password=password)
 
-        return AsyncAnilibriaAPI(authorization=f"Bearer {res.get("token")}")
+        init_params = {
+            'base_url': api.base_url,
+            'proxy': api.proxy,
+            'proxy_auth': api.proxy_auth,
+            'proxy_headers': api.proxy_headers.copy() if api.proxy_headers else None
+        }
+
+        init_params['authorization'] = f"Bearer {res.get('token')}"
+
+        return AsyncAnilibriaAPI(**init_params)
     except AnilibriaException as e:
         raise AnilibriaException("Auth error!")
 
 async def async_download(url: str, output_path: str = None, filename: str = "output.mp4"):
     """
     Позволяет скачивать серию через URL (https://cache-rfn.libria.fun/videos/media/)
+
+    Пожалуйста, используйте этот метод с осторожностью, ответ от тех. поддержки: Если вы будете злоупотреблять — мы вас заблокируем, имейте ввиду
+    
     ffmpeg required
 
     :param url: Ссылка на m3u8 плейлист

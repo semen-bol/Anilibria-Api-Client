@@ -27,20 +27,13 @@ class Test(IsolatedAsyncioTestCase):
     async def test(self):
         api = AsyncAnilibriaAPI()
 
-        pages = await auto_paginate(api_function=api.anime.genres_genreId_releases, limit=30, genreId=27)
-
-        pprint(pages)
-        print(len(pages))
-        return
-        api = await auth(api, "", "")
-
         """help = Help()
         token = await help.auth(api_without_auth=api)
 
         api_auth = AsyncAnilibriaAPI(authorization=f"Bearer {token}")"""
 
         try:
-            """result = await api.anime.catalog_releases_get(
+            result = await api.anime.catalog_releases_get(
                 params=Release(
                     page=1,
                     limit=10,
@@ -49,7 +42,7 @@ class Test(IsolatedAsyncioTestCase):
                     production_statuses=[ProductionStatusesType.IS_IN_PRODUCTION],
                     exclude="poster,description,genres"
                 )
-            )"""
+            )
             """release = await api.anime.catalog_releases_post(
                 params=Release(
                     page=1,
@@ -109,6 +102,8 @@ class Test(IsolatedAsyncioTestCase):
 
         except AnilibriaException as e:
             raise e
+        
+        pprint(result)
 
         """pprint(object=(
             #res,
