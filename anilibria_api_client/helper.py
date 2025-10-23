@@ -10,7 +10,7 @@ async def auth(api: AsyncAnilibriaAPI, login: str, password: str) -> AsyncAnilib
     """
     Используется для простой авторизации без использования методов одной строчкой
 
-    :param api: AsyncAnilibriaAPI 
+    :param api: AsyncAnilibriaAPI - Аргументы сохраняются
     :param login: Логин от ЛК Anilibria
     :param password: Пароль от ЛК Anilibria
     :return: AsyncAnilibriaAPI
@@ -18,13 +18,25 @@ async def auth(api: AsyncAnilibriaAPI, login: str, password: str) -> AsyncAnilib
     try:
         res = await api.accounts.users_auth_login(login=login, password=password)
 
-        return AsyncAnilibriaAPI(authorization=f"Bearer {res.get("token")}")
+        init_params = {
+            'base_url': api.base_url,
+            'proxy': api.proxy,
+            'proxy_auth': api.proxy_auth,
+            'proxy_headers': api.proxy_headers.copy() if api.proxy_headers else None
+        }
+
+        init_params['authorization'] = f"Bearer {res.get('token')}"
+
+        return AsyncAnilibriaAPI(**init_params)
     except AnilibriaException as e:
         raise AnilibriaException("Auth error!")
 
 async def async_download(url: str, output_path: str = None, filename: str = "output.mp4"):
     """
     Позволяет скачивать серию через URL (https://cache-rfn.libria.fun/videos/media/)
+
+    Пожалуйста, используйте этот метод с осторожностью, ответ от тех. поддержки: Если вы будете злоупотреблять — мы вас заблокируем, имейте ввиду
+    
     ffmpeg required
 
     :param url: Ссылка на m3u8 плейлист
@@ -63,3 +75,35 @@ async def download_torrent_file(torrent_bytes: bytes, filename: str):
         await f.write(torrent_bytes)
     
     return True 
+
+async def auto_paginate(api_function, limit: int = 100, *args, **kwargs):
+    """
+    Автоматически применяет пагинацию и выводит все данные, не включайте в свой запрос page и limit!
+
+    Может работать не со всеми методами, проверяйте что-бы в ответе было поле data, но я думаю по подобию этой функции не доставит проблем переписывание пары строк на свой лад
+
+    :param api_function: Функция API 
+    :param limit: Этот параметр нужен сугубо для того, что-бы можно было вызывать методы где ограничение на limit поле
+    :param *args: аргументы для API функции
+    :param **kwargs: аргументы для API функции (кваргсов пока нигде нет)
+    :return: Все данные которые есть на всех страницах
+    """
+    page = 1
+    
+    all_results = []
+
+    while True:
+        response = await api_function(*args, page=page, limit=limit, **kwargs)
+
+        if response:
+            if response['data']:
+                items = response.get("data")
+                for item in items:
+                    all_results.append(item)
+
+        if len(response['data']) < limit:
+            break
+
+        page += 1
+
+    return all_results 

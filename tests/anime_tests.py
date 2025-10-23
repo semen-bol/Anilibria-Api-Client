@@ -4,7 +4,7 @@ from anilibria_api_client import AsyncAnilibriaAPI
 from anilibria_api_client.types import SortType, ProductionStatusesType, PublishStatusesType, ContentType
 from anilibria_api_client.models import Release
 from anilibria_api_client.exceptions import AnilibriaException
-from anilibria_api_client.helper import async_ffmpeg_download, async_download, auth, download_torrent_file
+from anilibria_api_client.helper import auto_paginate, async_download, auth, download_torrent_file
 from unittest import IsolatedAsyncioTestCase
 from pprint import pprint
 
@@ -27,15 +27,13 @@ class Test(IsolatedAsyncioTestCase):
     async def test(self):
         api = AsyncAnilibriaAPI()
 
-        api = await auth(api, "", "")
-
         """help = Help()
         token = await help.auth(api_without_auth=api)
 
         api_auth = AsyncAnilibriaAPI(authorization=f"Bearer {token}")"""
 
         try:
-            """result = await api.anime.catalog_releases_get(
+            result = await api.anime.catalog_releases_get(
                 params=Release(
                     page=1,
                     limit=10,
@@ -44,7 +42,7 @@ class Test(IsolatedAsyncioTestCase):
                     production_statuses=[ProductionStatusesType.IS_IN_PRODUCTION],
                     exclude="poster,description,genres"
                 )
-            )"""
+            )
             """release = await api.anime.catalog_releases_post(
                 params=Release(
                     page=1,
@@ -104,6 +102,8 @@ class Test(IsolatedAsyncioTestCase):
 
         except AnilibriaException as e:
             raise e
+        
+        pprint(result)
 
         """pprint(object=(
             #res,

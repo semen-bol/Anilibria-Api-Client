@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "anilibria-api-client"
-version = "0.2.0"
+version = "0.2.1"
 description = "Python async API wrapper for AniLibria Swagger"
 authors = [
     {name = "semen-bol", email = "syoma.bolotov@bk.ru"}
@@ -16,8 +16,7 @@ dependencies = [
     "aiohttp==3.12.15",
     "aiofiles==24.1.0",
     "pydantic==2.11.7",
-    "m3u8-To-MP4==0.1.11",
-    "ffmpeg-python==0.2.0"
+    "m3u8-To-MP4==0.1.11"
 ]
 
 [project.urls]
