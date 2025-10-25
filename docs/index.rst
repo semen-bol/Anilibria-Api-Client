@@ -8,7 +8,7 @@ Example
 
 .. code-block:: python
 
-   from anilibria_client import AsyncAnilibriaAPI # Client
+   from anilibria_client.api_client import AsyncAnilibriaAPI # Client
    from anilibria_client.exceptions import AnilibriaException, AnilibriaValidationException # Errors
    from anilibria_client.types import * # Types for some methods
    from anilibria_client.models import * # Models for some methods
