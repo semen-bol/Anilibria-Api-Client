@@ -1,7 +1,7 @@
 # Anilibria-Api-Client
 
 [![pypi](https://img.shields.io/badge/anilibria_api_client_on_PyPi-blue)](https://pypi.org/project/anilibria-api-client)
-![version](https://img.shields.io/badge/Version-0.2.1-blue)
+![version](https://img.shields.io/badge/Version-0.2.2-blue)
 ![licence](https://img.shields.io/badge/License-MIT-green)
 ![python](https://img.shields.io/badge/Python-3.13%2B-blue)
 
@@ -12,7 +12,7 @@ Anilibria-API-Client - this a async client to work with Anilibria API, use a aio
 
 ## Installing
 
-Tested at python 3.13
+Developed and tested with Python 3.13. While it may work with other versions (oldest and newest), they are not officially supported.
 
 ### pip
 
@@ -23,7 +23,7 @@ $ pip install anilibria-api-client
 ## Usage
 
 ```python
-from anilibria_client import AsyncAnilibriaAPI # Client
+from anilibria_client.api_client import AsyncAnilibriaAPI # Client
 from anilibria_client.exceptions import AnilibriaException, AnilibriaValidationException # Errors
 from anilibria_client.types import * # Types for some methods
 from anilibria_client.models import * # Models for some methods

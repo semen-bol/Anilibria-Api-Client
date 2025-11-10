@@ -1,6 +1,6 @@
 import unittest
 
-from anilibria_api_client import AsyncAnilibriaAPI
+from anilibria_api_client.api_client import AsyncAnilibriaAPI
 from anilibria_api_client.types import SortType, ProductionStatusesType, PublishStatusesType, ContentType
 from anilibria_api_client.models import Release
 from anilibria_api_client.exceptions import AnilibriaException
