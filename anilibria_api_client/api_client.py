@@ -21,7 +21,7 @@ class AsyncAnilibriaAPI(AsyncBaseAPI):
     Асинхронный клиент для работы с AnilibriaAPI
 
     :param base_url: Базовый URL API
-    :param authorization: Установить свой токен в формате "Bearer ..."s
+    :param authorization: Установить свой токен в формате "Bearer ..."
     :param proxy: URL прокси-сервера (http://proxy:port или https://proxy:port)
     :param proxy_auth: Аутентификация для прокси (BasicAuth)
     :param proxy_headers: Заголовки для прокси

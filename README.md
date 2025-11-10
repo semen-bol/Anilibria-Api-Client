@@ -12,7 +12,7 @@ Anilibria-API-Client - this a async client to work with Anilibria API, use a aio
 
 ## Installing
 
-Tested at python 3.13
+Developed and tested with Python 3.13. While it may work with other versions (oldest and newest), they are not officially supported.
 
 ### pip
 
