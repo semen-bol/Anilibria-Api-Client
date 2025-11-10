@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "anilibria-api-client"
-version = "0.2.2
+version = "0.2.2"
 description = "Python async API wrapper for AniLibria Swagger"
 authors = [
     {name = "semen-bol", email = "syoma.bolotov@bk.ru"}

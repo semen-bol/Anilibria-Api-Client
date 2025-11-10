@@ -2,6 +2,7 @@ AniLibria-Api-Client Documentation
 ==================================
 
 Python async API wrapper for AniLibria Swagger
+Developed and tested with Python 3.13. While it may work with other versions (oldest and newest), they are not officially supported.
 
 Example
 -------------
